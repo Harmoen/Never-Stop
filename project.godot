@@ -15,6 +15,10 @@ run/main_scene="res://source/main/main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://assets/textures/icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://source/global/audio_bus_layout.tres"
+
 [autoload]
 
 AudioManager="*res://source/global/AudioManager.tscn"
@@ -31,6 +35,10 @@ folder_colors={
 "res://assets/": "green",
 "res://source/": "teal"
 }
+
+[gui]
+
+theme/custom="res://source/global/global_theme.tres"
 
 [rendering]
 
