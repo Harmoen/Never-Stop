@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b0j5744x2awu8"]
+[gd_scene load_steps=8 format=3 uid="uid://b0j5744x2awu8"]
 
 [ext_resource type="Script" path="res://source/main/main.gd" id="1_svqlp"]
 [ext_resource type="PackedScene" uid="uid://ds23o5u6thl0n" path="res://source/spaceship/spaceship.tscn" id="2_3spb5"]
 [ext_resource type="Texture2D" uid="uid://cmf33tq4ehg7x" path="res://assets/textures/placeholder/Sprite-0001.png" id="2_l7axo"]
+[ext_resource type="Script" path="res://source/ui/control_panel.gd" id="4_j3b12"]
 [ext_resource type="Texture2D" uid="uid://bfgvnmba3ehb3" path="res://assets/textures/placeholder/asteroid.png" id="4_vbc8j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekc2v"]
@@ -29,54 +30,6 @@ anchor_mode = 0
 [node name="Spaceship" parent="." instance=ExtResource("2_3spb5")]
 position = Vector2(126, 354)
 
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="Panel" type="PanelContainer" parent="UI"]
-custom_minimum_size = Vector2(0, 80)
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -30.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ekc2v")
-
-[node name="Control" type="Control" parent="UI/Panel"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI/Panel/Control"]
-layout_mode = 2
-offset_top = 24.0
-offset_right = 1272.0
-offset_bottom = 47.0
-text = "UI Placeholder"
-
-[node name="Label" type="Label" parent="UI/Panel/Control/Label"]
-layout_mode = 0
-offset_left = 1102.0
-offset_right = 1228.0
-offset_bottom = 23.0
-text = "Speed: at least 7!!"
-
-[node name="Label2" type="Label" parent="UI/Panel/Control/Label"]
-layout_mode = 0
-offset_left = 319.0
-offset_top = -19.0
-offset_right = 454.0
-offset_bottom = 4.0
-text = "Thrusters"
-
-[node name="HSlider" type="HSlider" parent="UI/Panel/Control"]
-layout_mode = 0
-offset_left = 313.0
-offset_top = 34.0
-offset_right = 833.0
-offset_bottom = 50.0
-theme_override_styles/grabber_area = SubResource("StyleBoxFlat_dj58t")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_dj58t")
-value = 18.0
-
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1
 
@@ -91,6 +44,60 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource("2_l7axo")
 stretch_mode = 1
+
+[node name="ControlPanel" type="CanvasLayer" parent="."]
+script = ExtResource("4_j3b12")
+
+[node name="Panel" type="Panel" parent="ControlPanel"]
+custom_minimum_size = Vector2(0, 80)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -80.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ekc2v")
+
+[node name="Control" type="Control" parent="ControlPanel/Panel"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 1276.0
+offset_bottom = 76.0
+
+[node name="Label" type="Label" parent="ControlPanel/Panel/Control"]
+layout_mode = 2
+offset_top = 24.0
+offset_right = 1272.0
+offset_bottom = 47.0
+text = "UI Placeholder"
+
+[node name="SpeedLabel" type="Label" parent="ControlPanel/Panel/Control/Label"]
+layout_mode = 0
+offset_left = 1102.0
+offset_right = 1228.0
+offset_bottom = 23.0
+text = "Speed: at least 7!!"
+
+[node name="Label2" type="Label" parent="ControlPanel/Panel/Control/Label"]
+layout_mode = 0
+offset_left = 319.0
+offset_top = -19.0
+offset_right = 454.0
+offset_bottom = 4.0
+text = "Thrusters"
+
+[node name="HSlider" type="HSlider" parent="ControlPanel/Panel/Control"]
+layout_mode = 0
+offset_left = 313.0
+offset_top = 34.0
+offset_right = 833.0
+offset_bottom = 50.0
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_dj58t")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_dj58t")
+value = 18.0
 
 [node name="Asteroid" type="Sprite2D" parent="."]
 position = Vector2(846, 119)

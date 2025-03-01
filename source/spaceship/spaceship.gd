@@ -1,44 +1,47 @@
 class_name SpaceShip
 extends Node2D
 
+#region Variables
+const MAX_HEIGHT : float = 720
+const MIN_HEIGHT : float = 0
+
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
-var click_position : float = 0
-var strafe_speed : float = 5000
+# Strafing Variables
+var input_direction : float = 0
+var direction : float = 0
+var current_strafe_speed : float = 0
+var strafe_speed : float = 500
+var strafe_acceleration : float = 6
+
+var current_speed : float = 1:
+	set(new_speed):
+		current_speed = new_speed
+		UI.update_speed_display(current_speed)
+#endregion
+
+
+func _ready() -> void:
+	current_strafe_speed = strafe_speed
+
 
 func _process(delta: float) -> void:
-	var direction = Input.get_axis("up","down")
-	tween_position(global_position.y + (strafe_speed * delta * direction))
-
-
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		if Input.is_action_pressed("left_click"):
-			tween_position(get_global_mouse_position().y - click_position)
-	elif event.is_action_pressed("left_click"):
-		click_position = get_global_mouse_position().y - self.global_position.y
-	elif event.is_action_released("left_click") or event.is_action_released("down") or event.is_action_released("up"):
-		skew = 0
-		scale.y = 1
-	elif event.is_action_pressed("shoot"):
-		audio_stream_player.play()
-
-
-func tween_position(new_position : float) -> void:
-	# Confines ship to the screen
-	new_position = clamp(new_position,0,get_viewport().size.y)
-	self.scale.y = 0.8
-	var distance : float = self.global_position.y - new_position
-	if distance > 0:
-		#print("up")
-		skew = 25
+	if Input.is_action_pressed("left_click"):
+		var mouse_distance : float = get_global_mouse_position().y - self.global_position.y
+		if abs(mouse_distance) > 5:
+			input_direction = signf(mouse_distance) 
+		else:
+			input_direction = 0.0
 	else:
-		#print("down")
-		skew = -25
+		input_direction = Input.get_axis("up","down")
 	
-	# Skip tween if distance is too small
-	if abs(distance) < 1:
-		self.global_position.y = new_position
-	else:
-		var tween := create_tween()
-		tween.tween_property(self,"global_position:y",new_position,0.4).set_ease(Tween.EASE_OUT)
+	
+	direction = lerp(direction, input_direction, strafe_acceleration * delta)
+	
+	
+	self.global_position.y = clamp(
+		self.global_position.y + (direction * current_strafe_speed * delta),
+		MIN_HEIGHT,
+		MAX_HEIGHT)
+	
+	current_speed += current_speed * 0.2 * delta
