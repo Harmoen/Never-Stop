@@ -14,10 +14,12 @@ var current_strafe_speed : float = 0
 var strafe_speed : float = 500
 var strafe_acceleration : float = 6
 
-var current_speed : float = 1:
-	set(new_speed):
-		current_speed = new_speed
-		UI.update_speed_display(current_speed)
+# I might make the speed not controlled by the spaceship, since it's controlled by throttle
+# And doesn't actually affect the position of the ship
+#var current_speed : float = 1:
+	#set(new_speed):
+		#current_speed = new_speed
+		#UI.update_speed_display(current_speed)
 #endregion
 
 
@@ -43,5 +45,3 @@ func _process(delta: float) -> void:
 		self.global_position.y + (direction * current_strafe_speed * delta),
 		MIN_HEIGHT,
 		MAX_HEIGHT)
-	
-	current_speed += current_speed * 0.2 * delta

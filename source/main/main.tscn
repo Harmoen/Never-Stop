@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://b0j5744x2awu8"]
+[gd_scene load_steps=9 format=3 uid="uid://b0j5744x2awu8"]
 
 [ext_resource type="Script" path="res://source/main/main.gd" id="1_svqlp"]
 [ext_resource type="PackedScene" uid="uid://ds23o5u6thl0n" path="res://source/spaceship/spaceship.tscn" id="2_3spb5"]
 [ext_resource type="Texture2D" uid="uid://cmf33tq4ehg7x" path="res://assets/textures/placeholder/Sprite-0001.png" id="2_l7axo"]
 [ext_resource type="Script" path="res://source/ui/control_panel.gd" id="4_j3b12"]
 [ext_resource type="Texture2D" uid="uid://bfgvnmba3ehb3" path="res://assets/textures/placeholder/asteroid.png" id="4_vbc8j"]
+[ext_resource type="Script" path="res://source/ui/throttle.gd" id="5_3g2n2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekc2v"]
 bg_color = Color(0.0588235, 0.0588235, 0.0588235, 0.784314)
@@ -75,6 +76,7 @@ offset_bottom = 47.0
 text = "UI Placeholder"
 
 [node name="SpeedLabel" type="Label" parent="ControlPanel/Panel/Control/Label"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 1102.0
 offset_right = 1228.0
@@ -89,7 +91,8 @@ offset_right = 454.0
 offset_bottom = 4.0
 text = "Thrusters"
 
-[node name="HSlider" type="HSlider" parent="ControlPanel/Panel/Control"]
+[node name="Throttle" type="HSlider" parent="ControlPanel/Panel/Control"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 313.0
 offset_top = 34.0
@@ -97,7 +100,12 @@ offset_right = 833.0
 offset_bottom = 50.0
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_dj58t")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_dj58t")
-value = 18.0
+max_value = 1.0
+step = 0.01
+value = 1.0
+tick_count = 5
+ticks_on_borders = true
+script = ExtResource("5_3g2n2")
 
 [node name="Asteroid" type="Sprite2D" parent="."]
 position = Vector2(846, 119)
