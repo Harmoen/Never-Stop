@@ -54,6 +54,7 @@ func _process(delta: float) -> void:
 	
 	accel_label.text = str(floorf(added_speed * 10.0)/10.0, "m/s²")
 	speed_label.text = str(floorf(Game.speed), "m/s")
+	set_time_label()
 
 
 func _on_reverse_bttn_pressed() -> void:
@@ -83,3 +84,9 @@ func update_shield_bar(new_value : float = 0.0) -> void:
 	else:
 		var tween = create_tween()
 		tween.tween_property(shield_bar,"value",new_value,0.3)
+
+
+func set_time_label() -> void:
+	var minutes : float = Game.time_elapsed / 60.0
+	var seconds : float = fmod(Game.time_elapsed, 60.0)
+	time_label.text = "%02d:%02d" % [minutes, seconds]
