@@ -4,6 +4,7 @@ extends Node2D
 #region Variables
 const MAX_HEIGHT : float = 720
 const MIN_HEIGHT : float = 0
+const TOUCH_DEADZONE : float = 5
 
 @onready var hitbox: Area2D = $Hitbox
 @onready var mouse_input_controller: Control = $guiInputLayer/MouseInputController
@@ -32,7 +33,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if following_mouse:
 		var mouse_distance : float = get_global_mouse_position().y - self.global_position.y
-		if abs(mouse_distance) > 5:
+		if abs(mouse_distance) > TOUCH_DEADZONE:
 			input_direction = signf(mouse_distance)
 	
 	direction = lerp(direction, input_direction, strafe_acceleration * delta)

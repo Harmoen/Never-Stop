@@ -5,13 +5,11 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ngben"]
 
-[node name="Obstacle" type="Node2D"]
+[node name="Obstacle" type="Area2D"]
+collision_layer = 2
 script = ExtResource("1_ek0w7")
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ngben")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

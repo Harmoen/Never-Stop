@@ -10,6 +10,7 @@ enum UNITS {MILES_PER_HOUR, MILES_PER_SECOND,
 
 @export var display_units : UNITS = UNITS.KILOMETERS_PER_HOUR
 
+@onready var shield_bar: ProgressBar = %ShieldBar
 @onready var throttle: Throttle = %Throttle
 @onready var speed_label: Label = %SpeedLabel
 @onready var accel_label: Label = %AccelLabel
@@ -24,10 +25,6 @@ var max_acceleration : float = 9.8
 var acceleration : float = 0:
 	set(new_accel):
 		acceleration = max(new_accel,0)
-var total_speed : float = 0:
-	set(new_speed):
-		total_speed = new_speed
-		speed_label.text = str(floorf(total_speed), "m/s")
 var reversed : bool = false:
 	set(new_value):
 		reversed = new_value
@@ -48,16 +45,15 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	#acceleration = lerp(acceleration, max_acceleration * throttle.value, lerp_speed * delta)
-	
 	# There is no deceleration in space unless the ship moves in reverse
 	var added_speed = acceleration + current_boost_speed
 	if reversed:
 		added_speed *= -1.0
 	
-	total_speed += added_speed * delta
+	Game.speed += (added_speed * delta)
 	
 	accel_label.text = str(floorf(added_speed * 10.0)/10.0, "m/s²")
+	speed_label.text = str(floorf(Game.speed), "m/s")
 
 
 func _on_reverse_bttn_pressed() -> void:
@@ -79,3 +75,11 @@ func _on_boost_timer_timeout() -> void:
 func _on_throttle_value_changed(new_value : float) -> void:
 	var tween = create_tween()
 	tween.tween_property(self,"acceleration", max_acceleration * new_value, 0.3)
+
+
+func update_shield_bar(new_value : float = 0.0) -> void:
+	if abs(shield_bar.value - new_value) < 0.03:
+		shield_bar.value = new_value
+	else:
+		var tween = create_tween()
+		tween.tween_property(shield_bar,"value",new_value,0.3)
