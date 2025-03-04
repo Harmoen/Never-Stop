@@ -5,7 +5,7 @@ extends Node2D
 const MAX_HEIGHT : float = 720
 const MIN_HEIGHT : float = 0
 
-@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var hitbox: Area2D = $Hitbox
 
 # Strafing Variables
 var input_direction : float = 0

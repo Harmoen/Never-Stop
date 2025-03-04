@@ -1,10 +1,43 @@
-[gd_scene load_steps=4 format=3 uid="uid://sn7i5kf8s46q"]
+[gd_scene load_steps=8 format=3 uid="uid://sn7i5kf8s46q"]
 
 [ext_resource type="Script" path="res://source/global/audio_manager.gd" id="1_6k0yv"]
+[ext_resource type="AudioStream" uid="uid://c4oepq6ukifgy" path="res://assets/audio/Dark Techo House.ogg" id="2_cpxtm"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yng30"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ugtdf"]
+
+[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_4bgts"]
+mix_rate = 20.0
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_ftnij"]
+fade_time = 0.1
+stream_count = 1
+stream_0 = ExtResource("2_cpxtm")
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_47m3e"]
+clip_count = 2
+clip_0/name = &"Silence"
+clip_0/stream = SubResource("AudioStreamGenerator_4bgts")
+clip_0/auto_advance = 1
+clip_0/next_clip = 0
+clip_1/name = &"Main"
+clip_1/stream = SubResource("AudioStreamPlaylist_ftnij")
+clip_1/auto_advance = 0
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 1,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(0, -1): {
+"fade_beats": 1,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+}
+}
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_6k0yv")
@@ -18,4 +51,6 @@ stream = SubResource("AudioStreamRandomizer_ugtdf")
 bus = &"Sound Effects"
 
 [node name="GameMusic" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamInteractive_47m3e")
+autoplay = true
 bus = &"Music"

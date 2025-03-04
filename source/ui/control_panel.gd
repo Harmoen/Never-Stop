@@ -11,22 +11,41 @@ enum UNITS {MILES_PER_HOUR, MILES_PER_SECOND,
 
 @onready var throttle: Throttle = %Throttle
 @onready var speed_label: Label = %SpeedLabel
+@onready var accel_label: Label = %AccelLabel
+@onready var boost_bttn: SoundButton = %BoostBttn
+@onready var reverse_bttn: SoundButton = %ReverseBttn
 
-var max_speed : float = 10
-# Current speed should be the same thing as acceleration
-var current_speed : float = 0
+## Max speed is equal to 1g, or 9.8 meters per second
+var max_acceleration : float = 9.8
+var acceleration : float = 0:
+	set(new_accel):
+		acceleration = new_accel
+		accel_label.text = str(new_accel, "mph/s")
 var total_speed : float = 0:
 	set(new_speed):
 		total_speed = new_speed
 		speed_label.text = str(floor(total_speed), "mph")
-var acceleration : float = 10
+var lerp_speed : float = 10
+var reversed : bool = false
+
 
 func _ready() -> void:
-	pass
+	reverse_bttn.pressed.connect(_on_reverse_bttn_pressed)
 
 
 func _process(delta: float) -> void:
-	current_speed = lerp(current_speed, max_speed * throttle.value, acceleration * delta)
+	acceleration = lerp(acceleration, max_acceleration * throttle.value, lerp_speed * delta)
 	
 	# There is no deceleration in space unless we add retrograde thrusters
-	total_speed += current_speed * delta
+	if reversed:
+		total_speed -= acceleration * delta
+	else:
+		total_speed += acceleration * delta
+
+
+func _on_reverse_bttn_pressed() -> void:
+	reversed = !reversed
+
+
+func _on_boost_bttn_pressed() -> void:
+	pass
