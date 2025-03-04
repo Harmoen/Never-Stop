@@ -1,3 +1,4 @@
+class_name ControlPanel
 extends CanvasLayer
 
 enum UNITS {MILES_PER_HOUR, MILES_PER_SECOND,
@@ -29,9 +30,11 @@ var total_speed : float = 0:
 		speed_label.text = str(floorf(total_speed), "m/s")
 var lerp_speed : float = 10
 var reversed : bool = false
+#region Boost
 var max_boost_speed : float = 20
 var current_boost_speed : float = 0
 var boost_duration : float = 4
+#endregion
 
 
 func _ready() -> void:

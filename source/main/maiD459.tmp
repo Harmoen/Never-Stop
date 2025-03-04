@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b0j5744x2awu8"]
+[gd_scene load_steps=15 format=3 uid="uid://b0j5744x2awu8"]
 
 [ext_resource type="Script" path="res://source/main/main.gd" id="1_svqlp"]
 [ext_resource type="PackedScene" uid="uid://ds23o5u6thl0n" path="res://source/spaceship/spaceship.tscn" id="2_3spb5"]
@@ -10,7 +10,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lbkag"]
 shader = ExtResource("3_qf87f")
-shader_parameter/scroll_speed = 0.0
+shader_parameter/scroll_speed = 20.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00mev"]
 bg_color = Color(0.0807833, 0.0807833, 0.0807833, 1)
@@ -38,12 +38,6 @@ border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0.88673, 0.802833, 0.412479, 1)
 
-[sub_resource type="InputEventAction" id="InputEventAction_31l4m"]
-action = &"boost"
-
-[sub_resource type="Shortcut" id="Shortcut_2aaw6"]
-events = [SubResource("InputEventAction_31l4m")]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pvfbt"]
 bg_color = Color(0.0807833, 0.0807833, 0.0807833, 1)
 border_width_left = 1
@@ -61,13 +55,6 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.0417974, 0.509131, 0.594539, 1)
 border_blend = true
-
-[sub_resource type="InputEventAction" id="InputEventAction_x220t"]
-action = &"reverse"
-pressed = true
-
-[sub_resource type="Shortcut" id="Shortcut_kpcxc"]
-events = [SubResource("InputEventAction_x220t")]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dj58t"]
 bg_color = Color(0.921843, 0.442544, 0.17464, 1)
@@ -170,9 +157,6 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 size_flags_vertical = 3
-shortcut = SubResource("Shortcut_2aaw6")
-shortcut_feedback = false
-shortcut_in_tooltip = false
 text = "Boost"
 script = ExtResource("6_nem02")
 
@@ -190,9 +174,6 @@ show_percentage = false
 [node name="ReverseBttn" type="Button" parent="ControlPanel/VBoxContainer/Panel/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-shortcut = SubResource("Shortcut_kpcxc")
-shortcut_feedback = false
-shortcut_in_tooltip = false
 text = "Reverse"
 script = ExtResource("6_nem02")
 

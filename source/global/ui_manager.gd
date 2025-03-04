@@ -1,3 +1,3 @@
 extends Node
 
-var control_panel : CanvasLayer
+var control_panel : ControlPanel
