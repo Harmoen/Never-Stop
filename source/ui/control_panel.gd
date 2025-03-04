@@ -28,8 +28,10 @@ var total_speed : float = 0:
 	set(new_speed):
 		total_speed = new_speed
 		speed_label.text = str(floorf(total_speed), "m/s")
-var lerp_speed : float = 10
-var reversed : bool = false
+var reversed : bool = false:
+	set(new_value):
+		reversed = new_value
+		Game.ship_reversed.emit(reversed)
 #region Boost
 var max_boost_speed : float = 20
 var current_boost_speed : float = 0

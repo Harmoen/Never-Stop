@@ -7,6 +7,7 @@ const MIN_HEIGHT : float = 0
 
 @onready var hitbox: Area2D = $Hitbox
 @onready var mouse_input_controller: Control = $guiInputLayer/MouseInputController
+@onready var sprite_2d: Sprite2D = $Sprite2D
 
 var max_shield : float = 10
 var current_shield : float = max_shield
@@ -22,8 +23,10 @@ var strafe_acceleration : float = 6
 
 
 func _ready() -> void:
+	Game.ship = self
 	mouse_input_controller.gui_input.connect(_on_gui_input_event)
 	current_strafe_speed = strafe_speed
+	Game.ship_reversed.connect(_on_ship_reversed)
 
 
 func _process(delta: float) -> void:
@@ -39,6 +42,10 @@ func _process(delta: float) -> void:
 		self.global_position.y + (direction * current_strafe_speed * delta),
 		MIN_HEIGHT,
 		MAX_HEIGHT)
+
+
+func _on_ship_reversed(is_reversed : bool) -> void:
+	sprite_2d.flip_h = is_reversed
 
 
 #region Handling Input Modes

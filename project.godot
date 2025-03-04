@@ -25,6 +25,10 @@ AudioManager="*res://source/global/AudioManager.tscn"
 Game="*res://source/global/game_globals.gd"
 UI="*res://source/global/ui_manager.gd"
 
+[debug]
+
+gdscript/warnings/unused_signal=0
+
 [display]
 
 window/size/viewport_width=1280
