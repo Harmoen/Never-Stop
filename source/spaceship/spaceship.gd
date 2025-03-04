@@ -6,37 +6,28 @@ const MAX_HEIGHT : float = 720
 const MIN_HEIGHT : float = 0
 
 @onready var hitbox: Area2D = $Hitbox
+@onready var mouse_input_controller: Control = $guiInputLayer/MouseInputController
 
 # Strafing Variables
 var input_direction : float = 0
 var direction : float = 0
+var following_mouse : bool = false
 var current_strafe_speed : float = 0
 var strafe_speed : float = 500
 var strafe_acceleration : float = 6
-
-# I might make the speed not controlled by the spaceship, since it's controlled by throttle
-# And doesn't actually affect the position of the ship
-#var current_speed : float = 1:
-	#set(new_speed):
-		#current_speed = new_speed
-		#UI.update_speed_display(current_speed)
 #endregion
 
 
 func _ready() -> void:
+	mouse_input_controller.gui_input.connect(_on_gui_input_event)
 	current_strafe_speed = strafe_speed
 
 
 func _process(delta: float) -> void:
-	if Input.is_action_pressed("left_click"):
+	if following_mouse:
 		var mouse_distance : float = get_global_mouse_position().y - self.global_position.y
 		if abs(mouse_distance) > 5:
-			input_direction = signf(mouse_distance) 
-		else:
-			input_direction = 0.0
-	else:
-		input_direction = Input.get_axis("up","down")
-	
+			input_direction = signf(mouse_distance)
 	
 	direction = lerp(direction, input_direction, strafe_acceleration * delta)
 	
@@ -45,3 +36,21 @@ func _process(delta: float) -> void:
 		self.global_position.y + (direction * current_strafe_speed * delta),
 		MIN_HEIGHT,
 		MAX_HEIGHT)
+
+
+#region Handling Input Modes
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event.is_action_pressed("down") or event.is_action_pressed("up"):
+		following_mouse = false
+		input_direction = Input.get_axis("up","down")
+	elif event.is_action_released("down") or event.is_action_released("up"):
+		input_direction = Input.get_axis("up","down")
+
+
+func _on_gui_input_event(event: InputEvent) -> void:
+	if event.is_action_pressed("left_click"):
+		following_mouse = true
+	elif event.is_action_released("left_click"):
+		following_mouse = false
+		input_direction = Input.get_axis("up","down")
+#endregion

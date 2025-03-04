@@ -27,6 +27,8 @@ var total_speed : float = 0:
 		speed_label.text = str(floor(total_speed), "mph")
 var lerp_speed : float = 10
 var reversed : bool = false
+var boost_speed : float = 20
+var boost_duration : float = 4
 
 
 func _ready() -> void:

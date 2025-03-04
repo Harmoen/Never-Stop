@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://b0j5744x2awu8"]
+[gd_scene load_steps=13 format=3 uid="uid://b0j5744x2awu8"]
 
 [ext_resource type="Script" path="res://source/main/main.gd" id="1_svqlp"]
 [ext_resource type="PackedScene" uid="uid://ds23o5u6thl0n" path="res://source/spaceship/spaceship.tscn" id="2_3spb5"]
 [ext_resource type="Texture2D" uid="uid://cmf33tq4ehg7x" path="res://assets/textures/placeholder/Sprite-0001.png" id="2_l7axo"]
 [ext_resource type="Shader" path="res://source/shaders/scroll.gdshader" id="3_qf87f"]
 [ext_resource type="Script" path="res://source/ui/control_panel.gd" id="4_j3b12"]
-[ext_resource type="Texture2D" uid="uid://bfgvnmba3ehb3" path="res://assets/textures/placeholder/asteroid.png" id="4_vbc8j"]
 [ext_resource type="Script" path="res://source/ui/throttle.gd" id="5_3g2n2"]
 [ext_resource type="Script" path="res://source/ui/sound_button.gd" id="6_nem02"]
 
@@ -28,17 +27,29 @@ border_width_bottom = 2
 border_color = Color(0.951438, 0.211101, 0, 1)
 border_blend = true
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00mev"]
+bg_color = Color(0.0807833, 0.0807833, 0.0807833, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qq2s6"]
+bg_color = Color(0.0696532, 0.669902, 0.781649, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0417974, 0.509131, 0.594539, 1)
+border_blend = true
+
 [node name="Main" type="Node"]
 script = ExtResource("1_svqlp")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
-
-[node name="Spaceship" parent="." instance=ExtResource("2_3spb5")]
-position = Vector2(126, 354)
-
 [node name="Background" type="CanvasLayer" parent="."]
-layer = -1
+layer = -2
 
 [node name="PlaceholderBackground" type="TextureRect" parent="Background"]
 z_index = -1
@@ -52,6 +63,12 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource("2_l7axo")
 stretch_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="Spaceship" parent="." instance=ExtResource("2_3spb5")]
+position = Vector2(126, 354)
 
 [node name="ControlPanel" type="CanvasLayer" parent="."]
 script = ExtResource("4_j3b12")
@@ -137,22 +154,21 @@ offset_bottom = 56.0
 text = "Reverse"
 script = ExtResource("6_nem02")
 
-[node name="Asteroid" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(846, 119)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("4_vbc8j")
-
-[node name="Asteroid2" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(1004, 506)
-rotation = -0.914423
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("4_vbc8j")
-
-[node name="Asteroid3" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(601, 567)
-rotation = -1.38281
-scale = Vector2(0.17021, 0.17021)
-texture = ExtResource("4_vbc8j")
+[node name="ShieldBar" type="ProgressBar" parent="ControlPanel/Panel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -86.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_00mev")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qq2s6")
+max_value = 1.0
+value = 0.71
+show_percentage = false
