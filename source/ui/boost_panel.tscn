@@ -39,6 +39,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -46,10 +47,12 @@ text = "Boost"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SoundButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="BoostBttn" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 size_flags_vertical = 3
+text = "Boost"
 script = ExtResource("1_xobs2")
 
 [node name="BoostProgress" type="ProgressBar" parent="MarginContainer/HBoxContainer"]

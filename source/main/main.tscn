@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b0j5744x2awu8"]
+[gd_scene load_steps=15 format=3 uid="uid://b0j5744x2awu8"]
 
 [ext_resource type="Script" path="res://source/main/main.gd" id="1_svqlp"]
 [ext_resource type="PackedScene" uid="uid://ds23o5u6thl0n" path="res://source/spaceship/spaceship.tscn" id="2_3spb5"]
@@ -11,21 +11,6 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lbkag"]
 shader = ExtResource("3_qf87f")
 shader_parameter/scroll_speed = 0.5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekc2v"]
-bg_color = Color(0.0588235, 0.0588235, 0.0588235, 0.784314)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.88673, 0.802833, 0.412479, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dj58t"]
-bg_color = Color(0.921843, 0.442544, 0.17464, 1)
-border_width_top = 2
-border_width_bottom = 2
-border_color = Color(0.951438, 0.211101, 0, 1)
-border_blend = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00mev"]
 bg_color = Color(0.0807833, 0.0807833, 0.0807833, 1)
@@ -43,6 +28,39 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.0417974, 0.509131, 0.594539, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekc2v"]
+bg_color = Color(0.0588235, 0.0588235, 0.0588235, 0.784314)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.88673, 0.802833, 0.412479, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pvfbt"]
+bg_color = Color(0.0807833, 0.0807833, 0.0807833, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5hw32"]
+bg_color = Color(0.0696532, 0.669902, 0.781649, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0417974, 0.509131, 0.594539, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dj58t"]
+bg_color = Color(0.921843, 0.442544, 0.17464, 1)
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(0.951438, 0.211101, 0, 1)
 border_blend = true
 
 [node name="Main" type="Node"]
@@ -68,13 +86,16 @@ stretch_mode = 1
 anchor_mode = 0
 
 [node name="Spaceship" parent="." instance=ExtResource("2_3spb5")]
-position = Vector2(126, 354)
+position = Vector2(139, 358)
 
 [node name="ControlPanel" type="CanvasLayer" parent="."]
 script = ExtResource("4_j3b12")
 
-[node name="Panel" type="Panel" parent="ControlPanel"]
-custom_minimum_size = Vector2(0, 80)
+[node name="BoostTimer" type="Timer" parent="ControlPanel"]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ControlPanel"]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -82,93 +103,115 @@ anchor_bottom = 1.0
 offset_top = -80.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ekc2v")
 
-[node name="Control" type="Control" parent="ControlPanel/Panel"]
-layout_mode = 2
-anchors_preset = 0
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 1276.0
-offset_bottom = 76.0
-
-[node name="Throttle" type="HSlider" parent="ControlPanel/Panel/Control"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 313.0
-offset_top = 34.0
-offset_right = 833.0
-offset_bottom = 50.0
-theme_override_styles/grabber_area = SubResource("StyleBoxFlat_dj58t")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_dj58t")
-max_value = 1.0
-step = 0.01
-value = 1.0
-tick_count = 5
-ticks_on_borders = true
-script = ExtResource("5_3g2n2")
-
-[node name="SpeedLabel" type="Label" parent="ControlPanel/Panel/Control"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 1102.0
-offset_top = 24.0
-offset_right = 1237.0
-offset_bottom = 47.0
-text = "Speed: at least 7!!"
-
-[node name="AccelLabel" type="Label" parent="ControlPanel/Panel/Control"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 857.0
-offset_top = 23.0
-offset_right = 992.0
-offset_bottom = 46.0
-text = "Accel : 7mph/s"
-
-[node name="ThrusterTitle" type="Label" parent="ControlPanel/Panel/Control"]
-layout_mode = 0
-offset_left = 319.0
-offset_top = 5.0
-offset_right = 454.0
-offset_bottom = 28.0
-text = "Thrusters"
-
-[node name="BoostBttn" type="Button" parent="ControlPanel/Panel"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 35.0
-offset_top = 25.0
-offset_right = 88.0
-offset_bottom = 56.0
-text = "Boost"
-script = ExtResource("6_nem02")
-
-[node name="ReverseBttn" type="Button" parent="ControlPanel/Panel"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 137.0
-offset_top = 25.0
-offset_right = 207.0
-offset_bottom = 56.0
-text = "Reverse"
-script = ExtResource("6_nem02")
-
-[node name="ShieldBar" type="ProgressBar" parent="ControlPanel/Panel"]
+[node name="ShieldBar" type="ProgressBar" parent="ControlPanel/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 6)
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -86.0
-offset_bottom = -80.0
-grow_horizontal = 2
-grow_vertical = 0
+layout_mode = 2
 size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_00mev")
 theme_override_styles/fill = SubResource("StyleBoxFlat_qq2s6")
 max_value = 1.0
 value = 0.71
 show_percentage = false
+
+[node name="Panel" type="PanelContainer" parent="ControlPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_ekc2v")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ControlPanel/VBoxContainer/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="BoostPanel" type="PanelContainer" parent="ControlPanel/VBoxContainer/Panel/HBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ControlPanel/VBoxContainer/Panel/HBoxContainer/BoostPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ControlPanel/VBoxContainer/Panel/HBoxContainer/BoostPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ControlPanel/VBoxContainer/Panel/HBoxContainer/BoostPanel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="ControlPanel/VBoxContainer/Panel/HBoxContainer/BoostPanel/MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Boost"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BoostBttn" type="Button" parent="ControlPanel/VBoxContainer/Panel/HBoxContainer/BoostPanel/MarginContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Boost"
+script = ExtResource("6_nem02")
+
+[node name="BoostFuelMeter" type="ProgressBar" parent="ControlPanel/VBoxContainer/Panel/HBoxContainer/BoostPanel/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_pvfbt")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5hw32")
+max_value = 1.0
+value = 0.21
+fill_mode = 3
+show_percentage = false
+
+[node name="ReverseBttn" type="Button" parent="ControlPanel/VBoxContainer/Panel/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Reverse"
+script = ExtResource("6_nem02")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ControlPanel/VBoxContainer/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="ThrusterTitle" type="Label" parent="ControlPanel/VBoxContainer/Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Thrusters"
+
+[node name="Throttle" type="HSlider" parent="ControlPanel/VBoxContainer/Panel/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_dj58t")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_dj58t")
+max_value = 1.0
+step = 0.01
+scrollable = false
+tick_count = 5
+ticks_on_borders = true
+script = ExtResource("5_3g2n2")
+
+[node name="AccelLabel" type="Label" parent="ControlPanel/VBoxContainer/Panel/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "Accel : 7mph/s"
+
+[node name="SpeedLabel" type="Label" parent="ControlPanel/VBoxContainer/Panel/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "Speed: at least 7!!"
+
+[node name="TimeLabel" type="Label" parent="ControlPanel/VBoxContainer/Panel/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "00:00"

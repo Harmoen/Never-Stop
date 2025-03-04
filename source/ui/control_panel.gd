@@ -12,37 +12,47 @@ enum UNITS {MILES_PER_HOUR, MILES_PER_SECOND,
 @onready var throttle: Throttle = %Throttle
 @onready var speed_label: Label = %SpeedLabel
 @onready var accel_label: Label = %AccelLabel
-@onready var boost_bttn: SoundButton = %BoostBttn
 @onready var reverse_bttn: SoundButton = %ReverseBttn
+@onready var boost_bttn: SoundButton = %BoostBttn
+@onready var boost_timer: Timer = %BoostTimer
+@onready var boost_fuel_meter: ProgressBar = %BoostFuelMeter
+@onready var time_label: Label = %TimeLabel
 
-## Max speed is equal to 1g, or 9.8 meters per second
+## Max acceleration is equal to 1g, or 9.8 meters per second per second
 var max_acceleration : float = 9.8
 var acceleration : float = 0:
 	set(new_accel):
-		acceleration = new_accel
-		accel_label.text = str(new_accel, "mph/s")
+		acceleration = max(new_accel,0)
 var total_speed : float = 0:
 	set(new_speed):
 		total_speed = new_speed
-		speed_label.text = str(floor(total_speed), "mph")
+		speed_label.text = str(floorf(total_speed), "m/s")
 var lerp_speed : float = 10
 var reversed : bool = false
-var boost_speed : float = 20
+var max_boost_speed : float = 20
+var current_boost_speed : float = 0
 var boost_duration : float = 4
 
 
 func _ready() -> void:
+	UI.control_panel = self
 	reverse_bttn.pressed.connect(_on_reverse_bttn_pressed)
+	throttle.value_changed.connect(_on_throttle_value_changed)
+	boost_bttn.pressed.connect(_on_boost_bttn_pressed)
+	boost_timer.timeout.connect(_on_boost_timer_timeout)
 
 
 func _process(delta: float) -> void:
-	acceleration = lerp(acceleration, max_acceleration * throttle.value, lerp_speed * delta)
+	#acceleration = lerp(acceleration, max_acceleration * throttle.value, lerp_speed * delta)
 	
-	# There is no deceleration in space unless we add retrograde thrusters
+	# There is no deceleration in space unless the ship moves in reverse
+	var added_speed = acceleration + current_boost_speed
 	if reversed:
-		total_speed -= acceleration * delta
-	else:
-		total_speed += acceleration * delta
+		added_speed *= -1.0
+	
+	total_speed += added_speed * delta
+	
+	accel_label.text = str(floorf(added_speed * 10.0)/10.0, "m/s²")
 
 
 func _on_reverse_bttn_pressed() -> void:
@@ -50,4 +60,17 @@ func _on_reverse_bttn_pressed() -> void:
 
 
 func _on_boost_bttn_pressed() -> void:
-	pass
+	boost_timer.wait_time = boost_duration
+	boost_timer.start()
+	var tween = create_tween()
+	tween.tween_property(self,"current_boost_speed", max_boost_speed, 0.3)
+
+
+func _on_boost_timer_timeout() -> void:
+	var tween = create_tween()
+	tween.tween_property(self,"current_boost_speed", 0, 0.3)
+
+
+func _on_throttle_value_changed(new_value : float) -> void:
+	var tween = create_tween()
+	tween.tween_property(self,"acceleration", max_acceleration * new_value, 0.3)

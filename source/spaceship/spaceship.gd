@@ -8,6 +8,9 @@ const MIN_HEIGHT : float = 0
 @onready var hitbox: Area2D = $Hitbox
 @onready var mouse_input_controller: Control = $guiInputLayer/MouseInputController
 
+var max_shield : float = 10
+var current_shield : float = max_shield
+
 # Strafing Variables
 var input_direction : float = 0
 var direction : float = 0
@@ -39,7 +42,7 @@ func _process(delta: float) -> void:
 
 
 #region Handling Input Modes
-func _unhandled_key_input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("down") or event.is_action_pressed("up"):
 		following_mouse = false
 		input_direction = Input.get_axis("up","down")
