@@ -47,6 +47,7 @@ folder_colors={
 [gui]
 
 theme/custom="res://source/global/global_theme.tres"
+theme/custom_font="res://assets/fonts/futura medium condensed bt.ttf"
 
 [input]
 

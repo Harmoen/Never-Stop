@@ -1,6 +1,7 @@
 class_name ControlPanel
 extends CanvasLayer
 
+#region variables
 enum UNITS {MILES_PER_HOUR, MILES_PER_SECOND,
 			KILOMETERS_PER_HOUR,KILOMETERS_PER_SECOND,
 			METERS_PER_HOUR, METERS_PER_SECOND,
@@ -29,10 +30,13 @@ var reversed : bool = false:
 	set(new_value):
 		reversed = new_value
 		Game.ship_reversed.emit(reversed)
-#region Boost
+# Boost Variable
+var max_boost_fuel : float = 100
+var current_boost_fuel : float = 10
 var max_boost_speed : float = 20
 var current_boost_speed : float = 0
 var boost_duration : float = 4
+var is_boosting : bool = false
 #endregion
 
 
@@ -55,13 +59,19 @@ func _process(delta: float) -> void:
 	accel_label.text = str(floorf(added_speed * 10.0)/10.0, "m/s²")
 	speed_label.text = str(floorf(Game.speed), "m/s")
 	set_time_label()
+	
+	update_boost_fuel_meter()
 
 
 func _on_reverse_bttn_pressed() -> void:
 	reversed = !reversed
 
 
+#region Boosting
 func _on_boost_bttn_pressed() -> void:
+	if is_boosting:
+		return
+	is_boosting = true
 	boost_timer.wait_time = boost_duration
 	boost_timer.start()
 	var tween = create_tween()
@@ -69,8 +79,14 @@ func _on_boost_bttn_pressed() -> void:
 
 
 func _on_boost_timer_timeout() -> void:
+	is_boosting = false
 	var tween = create_tween()
 	tween.tween_property(self,"current_boost_speed", 0, 0.3)
+
+
+func update_boost_fuel_meter() -> void:
+	boost_fuel_meter.value = current_boost_fuel / max_boost_fuel
+#endregion
 
 
 func _on_throttle_value_changed(new_value : float) -> void:
