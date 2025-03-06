@@ -1,0 +1,239 @@
+[gd_scene load_steps=19 format=3 uid="uid://c4a2jcpah4gho"]
+
+[ext_resource type="Texture2D" uid="uid://esmi1mu1yxm6" path="res://assets/textures/Half Moon.png" id="2_nfdxi"]
+[ext_resource type="Texture2D" uid="uid://cru1brghevdhw" path="res://assets/textures/Layer 2.png" id="3_2ysaf"]
+[ext_resource type="Texture2D" uid="uid://diqdvvp6c7an6" path="res://assets/textures/Thruster Slider.png" id="4_0xoav"]
+[ext_resource type="Script" path="res://source/ui/throttle.gd" id="5_noaeh"]
+[ext_resource type="Script" path="res://source/ui/sound_button.gd" id="6_ayeev"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_uw5er"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_774rp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_anvsp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bxo0d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00mev"]
+bg_color = Color(0.0807833, 0.0807833, 0.0807833, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qq2s6"]
+bg_color = Color(0.0696532, 0.669902, 0.781649, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0417974, 0.509131, 0.594539, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekc2v"]
+bg_color = Color(0.0588235, 0.0588235, 0.0588235, 0.784314)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.88673, 0.802833, 0.412479, 1)
+
+[sub_resource type="InputEventAction" id="InputEventAction_31l4m"]
+action = &"boost"
+
+[sub_resource type="Shortcut" id="Shortcut_2aaw6"]
+events = [SubResource("InputEventAction_31l4m")]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pvfbt"]
+bg_color = Color(0.0807833, 0.0807833, 0.0807833, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5hw32"]
+bg_color = Color(0.0696532, 0.669902, 0.781649, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0417974, 0.509131, 0.594539, 1)
+border_blend = true
+
+[sub_resource type="InputEventAction" id="InputEventAction_x220t"]
+action = &"reverse"
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_kpcxc"]
+events = [SubResource("InputEventAction_x220t")]
+
+[node name="ControlPanel" type="CanvasLayer"]
+
+[node name="BoostTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="ShieldCircleMeter" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(51, 670)
+rotation = -0.392699
+texture = ExtResource("2_nfdxi")
+offset = Vector2(0, -100)
+
+[node name="BoostCircleMeter" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(2.703, 0.54, 11.352, 1)
+position = Vector2(1230, 670)
+rotation = -1.31772
+texture = ExtResource("2_nfdxi")
+offset = Vector2(0, -100)
+
+[node name="PanelTexture" type="TextureRect" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -251.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 4
+texture = ExtResource("3_2ysaf")
+
+[node name="Throttle" type="VSlider" parent="."]
+unique_name_in_owner = true
+offset_top = 517.0
+offset_right = 58.0
+offset_bottom = 690.0
+theme_override_constants/center_grabber = 1
+theme_override_icons/grabber = ExtResource("4_0xoav")
+theme_override_icons/grabber_highlight = ExtResource("4_0xoav")
+theme_override_icons/grabber_disabled = ExtResource("4_0xoav")
+theme_override_icons/tick = SubResource("ImageTexture_uw5er")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_774rp")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_anvsp")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_bxo0d")
+max_value = 1.0
+step = 0.01
+scrollable = false
+tick_count = 5
+ticks_on_borders = true
+script = ExtResource("5_noaeh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -80.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ShieldBar" type="ProgressBar" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_00mev")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qq2s6")
+max_value = 1.0
+value = 1.0
+show_percentage = false
+
+[node name="Panel" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_ekc2v")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="BoostPanel" type="PanelContainer" parent="VBoxContainer/Panel/HBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Panel/HBoxContainer/BoostPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Panel/HBoxContainer/BoostPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel/HBoxContainer/BoostPanel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/Panel/HBoxContainer/BoostPanel/MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Boost"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BoostBttn" type="Button" parent="VBoxContainer/Panel/HBoxContainer/BoostPanel/MarginContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_vertical = 3
+shortcut = SubResource("Shortcut_2aaw6")
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "Boost"
+script = ExtResource("6_ayeev")
+
+[node name="BoostFuelMeter" type="ProgressBar" parent="VBoxContainer/Panel/HBoxContainer/BoostPanel/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_pvfbt")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5hw32")
+max_value = 1.0
+value = 0.21
+fill_mode = 3
+show_percentage = false
+
+[node name="ReverseBttn" type="Button" parent="VBoxContainer/Panel/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+shortcut = SubResource("Shortcut_kpcxc")
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "Reverse"
+script = ExtResource("6_ayeev")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="ThrusterTitle" type="Label" parent="VBoxContainer/Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Thrusters"
+
+[node name="AccelLabel" type="Label" parent="VBoxContainer/Panel/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "Accel : 7mph/s"
+
+[node name="SpeedLabel" type="Label" parent="VBoxContainer/Panel/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "Speed: at least 7!!"
+
+[node name="TimeLabel" type="Label" parent="VBoxContainer/Panel/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "00:00"

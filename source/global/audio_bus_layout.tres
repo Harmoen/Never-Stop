@@ -1,4 +1,15 @@
-[gd_resource type="AudioBusLayout" format=3 uid="uid://cysdwdjnu1dyy"]
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://cysdwdjnu1dyy"]
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_8xekq"]
+resource_name = "Reverb"
+room_size = 0.39
+spread = 0.72
+dry = 0.65
+wet = 0.31
+
+[sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_657ww"]
+resource_name = "Amplify"
+volume_db = -10.0
 
 [resource]
 bus/1/name = &"Music"
@@ -7,6 +18,10 @@ bus/1/mute = false
 bus/1/bypass_fx = false
 bus/1/volume_db = 0.0
 bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectReverb_8xekq")
+bus/1/effect/0/enabled = false
+bus/1/effect/1/effect = SubResource("AudioEffectAmplify_657ww")
+bus/1/effect/1/enabled = false
 bus/2/name = &"Sound Effects"
 bus/2/solo = false
 bus/2/mute = false

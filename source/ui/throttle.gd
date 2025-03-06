@@ -1,5 +1,5 @@
 class_name Throttle
-extends HSlider
+extends VSlider
 
 
 func _unhandled_input(event: InputEvent) -> void:

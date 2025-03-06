@@ -40,6 +40,7 @@ Vector2i(0, -1): {
 }
 
 [node name="AudioManager" type="Node"]
+process_mode = 3
 script = ExtResource("1_6k0yv")
 
 [node name="sfxUIHover" type="AudioStreamPlayer" parent="."]

@@ -11,15 +11,16 @@ enum UNITS {MILES_PER_HOUR, MILES_PER_SECOND,
 
 @export var display_units : UNITS = UNITS.KILOMETERS_PER_HOUR
 
-@onready var shield_bar: ProgressBar = %ShieldBar
 @onready var throttle: Throttle = %Throttle
-@onready var speed_label: Label = %SpeedLabel
-@onready var accel_label: Label = %AccelLabel
 @onready var reverse_bttn: SoundButton = %ReverseBttn
+@onready var pause_bttn: SoundButton = %PauseBttn
 @onready var boost_bttn: SoundButton = %BoostBttn
 @onready var boost_timer: Timer = %BoostTimer
-@onready var boost_fuel_meter: ProgressBar = %BoostFuelMeter
+@onready var shield_circle_meter: Sprite2D = %ShieldCircleMeter
+@onready var boost_circle_meter: Sprite2D = %BoostCircleMeter
 @onready var time_label: Label = %TimeLabel
+@onready var speed_label: Label = %SpeedLabel
+@onready var accel_label: Label = %AccelLabel
 
 ## Max acceleration is equal to 1g, or 9.8 meters per second per second
 var max_acceleration : float = 9.8
@@ -32,20 +33,32 @@ var reversed : bool = false:
 		Game.ship_reversed.emit(reversed)
 # Boost Variable
 var max_boost_fuel : float = 100
-var current_boost_fuel : float = 10
+var current_boost_fuel : float = 100:
+	set(new_value):
+		current_boost_fuel = clamp(new_value,0.0,max_boost_fuel)
+		update_boost_fuel_meter(current_boost_fuel / max_boost_fuel)
 var max_boost_speed : float = 20
 var current_boost_speed : float = 0
 var boost_duration : float = 4
 var is_boosting : bool = false
 #endregion
 
+var test : float = 1.0:
+	set(new_value):
+		test = new_value
+		update_shield_bar(new_value)
+
 
 func _ready() -> void:
 	UI.control_panel = self
+	pause_bttn.pressed.connect(_on_pause_bttn_pressed)
 	reverse_bttn.pressed.connect(_on_reverse_bttn_pressed)
 	throttle.value_changed.connect(_on_throttle_value_changed)
 	boost_bttn.pressed.connect(_on_boost_bttn_pressed)
 	boost_timer.timeout.connect(_on_boost_timer_timeout)
+	
+	update_shield_bar(1.0)
+	update_boost_fuel_meter(1.0)
 
 
 func _process(delta: float) -> void:
@@ -60,7 +73,6 @@ func _process(delta: float) -> void:
 	speed_label.text = str(floorf(Game.speed), "m/s")
 	set_time_label()
 	
-	update_boost_fuel_meter()
 
 
 func _on_reverse_bttn_pressed() -> void:
@@ -84,8 +96,14 @@ func _on_boost_timer_timeout() -> void:
 	tween.tween_property(self,"current_boost_speed", 0, 0.3)
 
 
-func update_boost_fuel_meter() -> void:
-	boost_fuel_meter.value = current_boost_fuel / max_boost_fuel
+func update_boost_fuel_meter(new_value : float = 0.0) -> void:
+	var new_rotation = (new_value * 1.40) - 2.72 
+	if abs(boost_circle_meter.rotation - new_rotation) < 0.03:
+		boost_circle_meter.rotation = new_rotation
+	else:
+		var tween = create_tween()
+		tween.set_ease(Tween.EASE_OUT)
+		tween.tween_property(boost_circle_meter,"rotation", new_rotation, 0.3)
 #endregion
 
 
@@ -95,14 +113,27 @@ func _on_throttle_value_changed(new_value : float) -> void:
 
 
 func update_shield_bar(new_value : float = 0.0) -> void:
-	if abs(shield_bar.value - new_value) < 0.03:
-		shield_bar.value = new_value
+	var new_rotation = (new_value * 1.42) - 1.85 
+	if abs(shield_circle_meter.rotation - new_rotation) < 0.03:
+		shield_circle_meter.rotation = new_rotation
 	else:
 		var tween = create_tween()
-		tween.tween_property(shield_bar,"value",new_value,0.3)
+		tween.set_ease(Tween.EASE_OUT)
+		tween.tween_property(shield_circle_meter,"rotation", new_rotation, 0.3)
+	
+	# Bar version
+	#if abs(shield_bar.value - new_value) < 0.03:
+		#shield_bar.value = new_value
+	#else:
+		#var tween = create_tween()
+		#tween.tween_property(shield_bar,"value",new_value,0.3)
 
 
 func set_time_label() -> void:
 	var minutes : float = Game.time_elapsed / 60.0
 	var seconds : float = fmod(Game.time_elapsed, 60.0)
 	time_label.text = "%02d:%02d" % [minutes, seconds]
+
+
+func _on_pause_bttn_pressed() -> void:
+	Game.game_paused.emit()
