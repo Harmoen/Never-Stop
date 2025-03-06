@@ -8,7 +8,6 @@
 [node name="Obstacle" type="Area2D"]
 collision_layer = 2
 script = ExtResource("1_ek0w7")
-speed = 10000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ngben")

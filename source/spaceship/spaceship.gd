@@ -2,8 +2,8 @@ class_name SpaceShip
 extends Node2D
 
 #region Variables
-const MAX_HEIGHT : float = 720
-const MIN_HEIGHT : float = 0
+const MAX_HEIGHT : float = 520
+const MIN_HEIGHT : float = 20
 const TOUCH_DEADZONE : float = 5
 
 @onready var hitbox: Area2D = $Hitbox
