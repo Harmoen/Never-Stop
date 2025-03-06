@@ -6,6 +6,7 @@ var time_elapsed : float = 0
 
 signal game_started
 signal game_over
+signal game_restarted
 signal game_paused
 signal game_unpaused
 

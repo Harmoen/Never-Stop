@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgtd162boooxk"]
+
+[ext_resource type="Script" path="res://source/ui/game_over_screen.gd" id="1_fiq2o"]
+[ext_resource type="Script" path="res://source/ui/sound_button.gd" id="2_0mgv7"]
+
+[node name="GameOverScreen" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_fiq2o")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0, 0, 0.416)
+
+[node name="RestartBttn" type="Button" parent="."]
+offset_left = 391.0
+offset_top = 176.0
+offset_right = 538.0
+offset_bottom = 250.0
+scale = Vector2(3.2421, 3.2421)
+text = "Restart"
+script = ExtResource("2_0mgv7")

@@ -1,11 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://b0j5744x2awu8"]
+[gd_scene load_steps=12 format=3 uid="uid://b0j5744x2awu8"]
 
 [ext_resource type="Script" path="res://source/main/main.gd" id="1_svqlp"]
 [ext_resource type="PackedScene" uid="uid://ds23o5u6thl0n" path="res://source/spaceship/spaceship.tscn" id="2_3spb5"]
 [ext_resource type="Texture2D" uid="uid://cmf33tq4ehg7x" path="res://assets/textures/placeholder/Sprite-0001.png" id="2_l7axo"]
 [ext_resource type="Shader" path="res://source/shaders/scroll.gdshader" id="3_qf87f"]
-[ext_resource type="PackedScene" uid="uid://c0s123eepsvc2" path="res://source/ui/PauseMenu.tscn" id="5_pm1qn"]
-[ext_resource type="PackedScene" uid="uid://b3by1pfe4ov7x" path="res://source/control_panel.tscn" id="5_q0jio"]
+[ext_resource type="PackedScene" uid="uid://cgtd162boooxk" path="res://source/ui/game_over_screen.tscn" id="4_x87vn"]
+[ext_resource type="PackedScene" uid="uid://c0s123eepsvc2" path="res://source/ui/pause_menu.tscn" id="5_pm1qn"]
+[ext_resource type="PackedScene" uid="uid://b3by1pfe4ov7x" path="res://source/ui/control_panel.tscn" id="5_q0jio"]
 [ext_resource type="Script" path="res://source/main/obstacle_spawner.gd" id="8_enudh"]
 [ext_resource type="Script" path="res://source/main/left_boundary.gd" id="8_jgh1d"]
 
@@ -34,16 +35,6 @@ size_flags_vertical = 3
 texture = ExtResource("2_l7axo")
 stretch_mode = 1
 
-[node name="Placeholder" type="Label" parent="."]
-visible = false
-offset_left = 457.0
-offset_top = 401.0
-offset_right = 553.0
-offset_bottom = 424.0
-rotation = -0.76334
-scale = Vector2(3.2421, 3.2421)
-text = "Game Over!!"
-
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 
@@ -51,8 +42,11 @@ anchor_mode = 0
 position = Vector2(139, 358)
 
 [node name="PauseMenu" parent="." instance=ExtResource("5_pm1qn")]
+visible = false
 
 [node name="ControlPanel" parent="." instance=ExtResource("5_q0jio")]
+
+[node name="GameOverScreen" parent="." instance=ExtResource("4_x87vn")]
 
 [node name="LeftBoundary" type="Area2D" parent="."]
 collision_layer = 0

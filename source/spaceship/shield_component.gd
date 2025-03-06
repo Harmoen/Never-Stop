@@ -2,11 +2,10 @@ extends Node2D
 
 @export var hitbox : Area2D
 @export var max_shield : float = 50
-var current_shield : float = max_shield:
+var current_shield : float = 50:
 	set(new_value):
 		current_shield = clamp(new_value,0,max_shield)
 		UI.update_shield_bar(current_shield/max_shield)
-		print(current_shield)
 		if current_shield == 0:
 			_on_shield_depleted()
 
