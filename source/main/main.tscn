@@ -41,6 +41,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="UpdateTimer" type="Timer" parent="Background"]
 wait_time = 0.5
@@ -76,6 +77,10 @@ position = Vector2(1414, 235)
 gizmo_extents = 223.4
 script = ExtResource("8_enudh")
 
-[node name="SpawnTimer" type="Timer" parent="Obstacle Spawner"]
-wait_time = 3.0
+[node name="ObstacleSpawnTimer" type="Timer" parent="Obstacle Spawner"]
+wait_time = 2.5
+autostart = true
+
+[node name="PickupSpawnTimer" type="Timer" parent="Obstacle Spawner"]
+wait_time = 3.531
 autostart = true

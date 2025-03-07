@@ -1,21 +1,20 @@
 [gd_scene load_steps=4 format=3 uid="uid://cit4do0fm8iiq"]
 
 [ext_resource type="Script" path="res://source/objects/shield_pickup.gd" id="1_lmi3l"]
-[ext_resource type="Texture2D" uid="uid://bfgvnmba3ehb3" path="res://assets/textures/placeholder/asteroid.png" id="2_stcxw"]
+[ext_resource type="Texture2D" uid="uid://dyifaynep5grg" path="res://assets/textures/Powerup Blue.png" id="2_vjk0v"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ngben"]
-radius = 28.0179
+[sub_resource type="CircleShape2D" id="CircleShape2D_g2gpu"]
+radius = 20.0998
 
 [node name="ShieldPickup" type="Area2D"]
 collision_layer = 4
 script = ExtResource("1_lmi3l")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_stcxw")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_ngben")
+shape = SubResource("CircleShape2D_g2gpu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_vjk0v")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 0)

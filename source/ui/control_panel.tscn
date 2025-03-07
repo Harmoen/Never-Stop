@@ -53,6 +53,34 @@ rotation = -1.31772
 texture = ExtResource("3_ueq75")
 offset = Vector2(0, -100)
 
+[node name="XpBar" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = 1023.0
+offset_top = 758.0
+offset_right = 1808.0
+offset_bottom = 996.0
+rotation = -3.14159
+max_value = 1.0
+step = 0.01
+fill_mode = 1
+nine_patch_stretch = true
+texture_under = ExtResource("3_ueq75")
+texture_progress = ExtResource("3_ueq75")
+tint_under = Color(0.819608, 0.592157, 0.592157, 0)
+tint_over = Color(0.128113, 0.379727, 0.448785, 1)
+tint_progress = Color(2.11775e-06, 0.987228, 0.751067, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(0, 6)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -6.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
+
 [node name="PanelTexture" type="TextureRect" parent="."]
 anchors_preset = 12
 anchor_top = 1.0

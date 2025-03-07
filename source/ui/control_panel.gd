@@ -17,6 +17,7 @@ enum UNITS {MILES_PER_HOUR, MILES_PER_SECOND,
 @onready var boost_bttn: SoundButton = %BoostBttn
 @onready var shield_circle_meter: Sprite2D = %ShieldCircleMeter
 @onready var boost_circle_meter: Sprite2D = %BoostCircleMeter
+@onready var xp_bar: TextureProgressBar = %XpBar
 @onready var time_label: Label = %TimeLabel
 @onready var speed_label: Label = %SpeedLabel
 @onready var accel_label: Label = %AccelLabel
@@ -37,7 +38,10 @@ var current_xp : float = 0:
 		current_xp = wrap(new_value,0,xp_to_upgrade)
 		if new_value >= xp_to_upgrade:
 			for i in fmod(new_value,xp_to_upgrade):
+				update_xp_bar(1.0)
 				level_up()
+				xp_bar.value = 0.0
+		update_xp_bar(current_xp / xp_to_upgrade)
 # Boost Variables
 var max_boost_fuel : float = 4
 var current_boost_fuel : float = 4:
@@ -138,6 +142,15 @@ func update_shield_bar(new_value : float = 0.0) -> void:
 		tween.tween_property(shield_circle_meter,"rotation", new_rotation, 0.4)
 
 
+func update_xp_bar(new_value : float = 0) -> void: 
+	if abs(xp_bar.value - new_value) < 0.03:
+		xp_bar.value = new_value
+	else:
+		var tween = create_tween()
+		tween.set_ease(Tween.EASE_OUT)
+		tween.tween_property(xp_bar,"value", new_value, 0.4)
+
+
 func set_time_label() -> void:
 	var minutes : float = Game.time_elapsed / 60.0
 	var seconds : float = fmod(Game.time_elapsed, 60.0)
@@ -147,7 +160,9 @@ func set_time_label() -> void:
 func level_up() -> void:
 	ship_level += 1
 	max_acceleration *= 1.1
-	max_boost_fuel += 0.2
+	max_boost_fuel += 0.1
+	max_boost_speed *= 1.1
+	throttle.value = acceleration / max_acceleration
 	print("level ",ship_level)
 
 

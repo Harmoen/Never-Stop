@@ -1,9 +1,10 @@
 class_name XpPickup
 extends Pickup
 
-@export var xp_amount : float = 2
+@export var xp_amount : float = 4
+
 
 func on_collision() -> void:
-	UI.control_panel.current_xp += 2
+	UI.control_panel.current_xp += xp_amount
 	
 	queue_free()
