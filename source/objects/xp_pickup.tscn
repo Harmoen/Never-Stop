@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dwqfhc37v513l"]
 
 [ext_resource type="Script" path="res://source/objects/xp_pickup.gd" id="1_arbfl"]
-[ext_resource type="Texture2D" uid="uid://3ifcbta0gjgm" path="res://assets/textures/Powerup Base.png" id="2_t6qag"]
+[ext_resource type="Texture2D" uid="uid://fooumdv4s0rx" path="res://assets/textures/Powerup Lavender.png" id="2_5xpnh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_csftn"]
 radius = 20.0998
@@ -14,8 +14,7 @@ script = ExtResource("1_arbfl")
 shape = SubResource("CircleShape2D_csftn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0.803922, 1, 1)
-texture = ExtResource("2_t6qag")
+texture = ExtResource("2_5xpnh")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 0)

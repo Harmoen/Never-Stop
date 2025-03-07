@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dtmaj8247j8u5"]
 
 [ext_resource type="Script" path="res://source/objects/obstacle.gd" id="1_ek0w7"]
-[ext_resource type="Texture2D" uid="uid://bfgvnmba3ehb3" path="res://assets/textures/placeholder/asteroid.png" id="1_r6umr"]
+[ext_resource type="Texture2D" uid="uid://bq4671beg4nuk" path="res://assets/textures/Asteroid3.png" id="2_1xw73"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ngben"]
 radius = 28.0179
@@ -12,8 +12,8 @@ script = ExtResource("1_ek0w7")
 speed = 200
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_r6umr")
+scale = Vector2(0.627907, 0.627907)
+texture = ExtResource("2_1xw73")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ngben")
