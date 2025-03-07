@@ -2,7 +2,7 @@ class_name SpaceShip
 extends Node2D
 
 #region Variables
-const MAX_HEIGHT : float = 520
+const MAX_HEIGHT : float = 500
 const MIN_HEIGHT : float = 20
 const TOUCH_DEADZONE : float = 5
 

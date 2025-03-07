@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://3xghy2hkitai"]
+[gd_scene load_steps=25 format=3 uid="uid://3xghy2hkitai"]
 
 [ext_resource type="Script" path="res://source/ui/control_panel.gd" id="1_nb26g"]
 [ext_resource type="Texture2D" uid="uid://esmi1mu1yxm6" path="res://assets/textures/Half Moon.png" id="2_pmir3"]
@@ -36,6 +36,12 @@ pressed = true
 
 [sub_resource type="Shortcut" id="Shortcut_kpcxc"]
 events = [SubResource("InputEventAction_x220t")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_cnuba"]
+action = &"pause"
+
+[sub_resource type="Shortcut" id="Shortcut_00t2t"]
+events = [SubResource("InputEventAction_cnuba")]
 
 [node name="ControlPanel" type="CanvasLayer"]
 script = ExtResource("1_nb26g")
@@ -194,6 +200,7 @@ offset_left = 1075.0
 offset_top = 598.0
 offset_right = 1212.0
 offset_bottom = 692.0
+focus_mode = 0
 shortcut = SubResource("Shortcut_kpcxc")
 shortcut_feedback = false
 shortcut_in_tooltip = false
@@ -223,6 +230,10 @@ offset_left = 941.0
 offset_top = 652.0
 offset_right = 995.0
 offset_bottom = 704.0
+focus_mode = 0
+shortcut = SubResource("Shortcut_00t2t")
+shortcut_feedback = false
+shortcut_in_tooltip = false
 icon = ExtResource("12_dlyja")
 flat = true
 icon_alignment = 1
