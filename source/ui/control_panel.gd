@@ -89,7 +89,7 @@ func _on_reverse_bttn_pressed() -> void:
 #region Boosting
 func _on_boost_bttn_pressed() -> void:
 	if is_boosting:
-		start_boost()
+		end_boost()
 	elif current_boost_fuel > 0.3:
 		start_boost()
 
