@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://sn7i5kf8s46q"]
+[gd_scene load_steps=11 format=3 uid="uid://sn7i5kf8s46q"]
 
 [ext_resource type="Script" path="res://source/global/audio_manager.gd" id="1_6k0yv"]
-[ext_resource type="AudioStream" uid="uid://c4oepq6ukifgy" path="res://assets/audio/Dark Techo House.ogg" id="2_cpxtm"]
+[ext_resource type="AudioStream" uid="uid://2mc6clq8sjlk" path="res://assets/audio/lightspeed_main_body.ogg" id="2_12fc3"]
+[ext_resource type="AudioStream" uid="uid://m2n32lipjdix" path="res://assets/audio/lightspeed_main_tail.ogg" id="3_gl0ji"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yng30"]
 
@@ -10,10 +11,26 @@
 [sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_4bgts"]
 mix_rate = 20.0
 
-[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_ftnij"]
-fade_time = 0.1
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_gd4vh"]
+stream_count = 2
+stream_0/stream = ExtResource("2_12fc3")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("3_gl0ji")
+stream_1/volume = 0.0
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_u3hjv"]
 stream_count = 1
-stream_0 = ExtResource("2_cpxtm")
+stream_0 = SubResource("AudioStreamSynchronized_gd4vh")
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_gx7mc"]
+clip_count = 2
+clip_0/name = &"Lightspeed Main Body"
+clip_0/stream = ExtResource("2_12fc3")
+clip_0/auto_advance = 1
+clip_0/next_clip = 1
+clip_1/name = &""
+clip_1/stream = SubResource("AudioStreamPlaylist_u3hjv")
+clip_1/auto_advance = 0
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_47m3e"]
 clip_count = 2
@@ -22,7 +39,7 @@ clip_0/stream = SubResource("AudioStreamGenerator_4bgts")
 clip_0/auto_advance = 1
 clip_0/next_clip = 0
 clip_1/name = &"Main"
-clip_1/stream = SubResource("AudioStreamPlaylist_ftnij")
+clip_1/stream = SubResource("AudioStreamInteractive_gx7mc")
 clip_1/auto_advance = 0
 _transitions = {
 Vector2i(-1, -1): {
