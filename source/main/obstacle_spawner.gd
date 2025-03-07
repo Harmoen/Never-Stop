@@ -1,6 +1,9 @@
 extends Marker2D
 
 const OBSTACLE = preload("res://source/objects/obstacle.tscn")
+const BOOST_PICKUP = preload("res://source/objects/boost_pickup.tscn")
+const SHIELD_PICKUP = preload("res://source/objects/shield_pickup.tscn")
+const XP_PICKUP = preload("res://source/objects/xp_pickup.tscn")
 
 @onready var spawn_timer: Timer = $SpawnTimer
 

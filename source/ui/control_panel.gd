@@ -146,6 +146,8 @@ func set_time_label() -> void:
 
 func level_up() -> void:
 	ship_level += 1
+	max_acceleration *= 1.1
+	max_boost_fuel += 0.2
 	print("level ",ship_level)
 
 
