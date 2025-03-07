@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://source/ui/upgrade_menu.gd" id="1_oqch5"]
 [ext_resource type="Texture2D" uid="uid://cru1brghevdhw" path="res://assets/textures/Layer 2.png" id="2_lbu4b"]
 
-[sub_resource type="Animation" id="Animation_ornaw"]
-resource_name = "show_upgrades"
-
 [sub_resource type="Animation" id="Animation_ift4e"]
 resource_name = "hide_upgrades"
+
+[sub_resource type="Animation" id="Animation_ornaw"]
+resource_name = "show_upgrades"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j68rm"]
 _data = {
