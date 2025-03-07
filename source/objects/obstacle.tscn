@@ -4,14 +4,19 @@
 [ext_resource type="Texture2D" uid="uid://bfgvnmba3ehb3" path="res://assets/textures/placeholder/asteroid.png" id="1_r6umr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ngben"]
+radius = 28.0179
 
 [node name="Obstacle" type="Area2D"]
 collision_layer = 2
 script = ExtResource("1_ek0w7")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_ngben")
+speed = 1000
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_r6umr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ngben")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 0)

@@ -67,3 +67,10 @@ script = ExtResource("8_enudh")
 [node name="SpawnTimer" type="Timer" parent="Obstacle Spawner"]
 wait_time = 3.0
 autostart = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(50, 50)
+offset_left = 921.0
+offset_top = 273.0
+offset_right = 971.0
+offset_bottom = 323.0
