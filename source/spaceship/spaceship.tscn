@@ -18,7 +18,7 @@ curve = SubResource("Curve_boiko")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y16q1"]
 particle_flag_disable_z = true
-gravity = Vector3(-20, 0, 0)
+gravity = Vector3(-44.285, 0, 0)
 alpha_curve = SubResource("CurveTexture_jqaml")
 
 [node name="Spaceship" type="Node2D"]
@@ -38,9 +38,10 @@ debug_color = Color(0.722656, 0.478146, 7.70092e-07, 0.42)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(-114, -1)
+amount = 28
 process_material = SubResource("ParticleProcessMaterial_y16q1")
 texture = ExtResource("3_w6wlu")
-lifetime = 0.2
+lifetime = 0.5
 randomness = 0.1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
