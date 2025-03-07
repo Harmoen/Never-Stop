@@ -9,6 +9,7 @@ const TOUCH_DEADZONE : float = 5
 @onready var hitbox: Area2D = $Hitbox
 @onready var mouse_input_controller: Control = $guiInputLayer/MouseInputController
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var boost_particles: GPUParticles2D = $GPUParticles2D
 
 var max_shield : float = 10
 var current_shield : float = max_shield
@@ -28,6 +29,7 @@ func _ready() -> void:
 	mouse_input_controller.gui_input.connect(_on_gui_input_event)
 	current_strafe_speed = strafe_speed
 	Game.ship_reversed.connect(_on_ship_reversed)
+	boost_particles.hide()
 
 
 func _process(delta: float) -> void:
@@ -50,11 +52,11 @@ func _on_ship_reversed(is_reversed : bool) -> void:
 
 
 func _on_ship_boost_start() -> void:
-	pass
+	boost_particles.show()
 
 
 func _on_ship_boost_end() -> void:
-	pass
+	boost_particles.hide()
 
 
 
