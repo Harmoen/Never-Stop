@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://ds23o5u6thl0n" path="res://source/spaceship/spaceship.tscn" id="2_3spb5"]
 [ext_resource type="Texture2D" uid="uid://cmf33tq4ehg7x" path="res://assets/textures/placeholder/Sprite-0001.png" id="2_l7axo"]
 [ext_resource type="Shader" path="res://source/shaders/scroll.gdshader" id="3_qf87f"]
-[ext_resource type="PackedScene" uid="uid://cgtd162boooxk" path="res://source/ui/game_over_screen.tscn" id="4_x87vn"]
-[ext_resource type="PackedScene" uid="uid://c0s123eepsvc2" path="res://source/ui/pause_menu.tscn" id="5_pm1qn"]
-[ext_resource type="PackedScene" uid="uid://b3by1pfe4ov7x" path="res://source/ui/control_panel.tscn" id="5_q0jio"]
+[ext_resource type="PackedScene" path="res://source/ui/game_over_screen.tscn" id="4_x87vn"]
+[ext_resource type="PackedScene" path="res://source/ui/pause_menu.tscn" id="5_pm1qn"]
+[ext_resource type="PackedScene" uid="uid://3xghy2hkitai" path="res://source/ui/control_panel.tscn" id="5_q0jio"]
 [ext_resource type="Script" path="res://source/main/obstacle_spawner.gd" id="8_enudh"]
 [ext_resource type="Script" path="res://source/main/left_boundary.gd" id="8_jgh1d"]
 
@@ -47,6 +47,7 @@ visible = false
 [node name="ControlPanel" parent="." instance=ExtResource("5_q0jio")]
 
 [node name="GameOverScreen" parent="." instance=ExtResource("4_x87vn")]
+visible = false
 
 [node name="LeftBoundary" type="Area2D" parent="."]
 collision_layer = 0

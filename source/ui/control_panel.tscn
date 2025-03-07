@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b3by1pfe4ov7x"]
+[gd_scene load_steps=17 format=3 uid="uid://3xghy2hkitai"]
 
 [ext_resource type="Script" path="res://source/ui/control_panel.gd" id="1_nb26g"]
 [ext_resource type="Texture2D" uid="uid://esmi1mu1yxm6" path="res://assets/textures/Half Moon.png" id="2_pmir3"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cru1brghevdhw" path="res://assets/textures/Layer 2.png" id="2_wtsyc"]
 [ext_resource type="Script" path="res://source/ui/throttle.gd" id="3_0pmyw"]
 [ext_resource type="Texture2D" uid="uid://diqdvvp6c7an6" path="res://assets/textures/Thruster Slider.png" id="3_2byx1"]
+[ext_resource type="Texture2D" uid="uid://d3hc6iynilx64" path="res://assets/textures/Half Moon white.png" id="3_ueq75"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_uw5er"]
 
@@ -46,10 +47,10 @@ offset = Vector2(0, -100)
 
 [node name="BoostCircleMeter" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-modulate = Color(2.703, 0.54, 11.352, 1)
+modulate = Color(0.96, 0.51696, 0.2784, 1)
 position = Vector2(1230, 670)
 rotation = -1.31772
-texture = ExtResource("2_pmir3")
+texture = ExtResource("3_ueq75")
 offset = Vector2(0, -100)
 
 [node name="PanelTexture" type="TextureRect" parent="."]
