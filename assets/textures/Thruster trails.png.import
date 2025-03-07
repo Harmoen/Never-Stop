@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dox84shupgxsp"
-path="res://.godot/imported/Right Flame.png-f452b26027b81c97f25dc73af3c75ae5.ctex"
+uid="uid://djlk2lugv0fyu"
+path="res://.godot/imported/Thruster trails.png-01375269700237d96e0d66fe74071afd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/Right Flame.png"
-dest_files=["res://.godot/imported/Right Flame.png-f452b26027b81c97f25dc73af3c75ae5.ctex"]
+source_file="res://assets/textures/Thruster trails.png"
+dest_files=["res://.godot/imported/Thruster trails.png-01375269700237d96e0d66fe74071afd.ctex"]
 
 [params]
 
