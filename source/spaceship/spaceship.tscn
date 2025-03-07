@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://ds23o5u6thl0n"]
 
 [ext_resource type="Script" path="res://source/spaceship/spaceship.gd" id="1_1qns2"]
-[ext_resource type="Texture2D" uid="uid://c028sn6swaey8" path="res://assets/textures/placeholder/ship.png" id="1_53jdu"]
 [ext_resource type="Script" path="res://source/spaceship/shield_component.gd" id="2_vlrvn"]
 [ext_resource type="Texture2D" uid="uid://bnolcan8k7j3f" path="res://assets/textures/Central Flame.png" id="3_w6wlu"]
+[ext_resource type="Texture2D" uid="uid://c6j6a4b8m2kh1" path="res://assets/textures/Ship.png" id="4_3nyef"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u4qdb"]
 radius = 57.0
@@ -44,7 +44,7 @@ lifetime = 0.2
 randomness = 0.1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_53jdu")
+texture = ExtResource("4_3nyef")
 
 [node name="guiInputLayer" type="CanvasLayer" parent="."]
 layer = -1
