@@ -49,6 +49,15 @@ func _on_ship_reversed(is_reversed : bool) -> void:
 	sprite_2d.flip_h = is_reversed
 
 
+func _on_ship_boost_start() -> void:
+	pass
+
+
+func _on_ship_boost_end() -> void:
+	pass
+
+
+
 #region Handling Input Modes
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("down") or event.is_action_pressed("up"):

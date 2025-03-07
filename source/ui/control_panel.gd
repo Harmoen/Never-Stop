@@ -30,7 +30,15 @@ var reversed : bool = false:
 	set(new_value):
 		reversed = new_value
 		Game.ship_reversed.emit(reversed)
-# Boost Variable
+var ship_level : int = 1
+var xp_to_upgrade : float = 10
+var current_xp : float = 0:
+	set(new_value):
+		current_xp = wrap(new_value,0,xp_to_upgrade)
+		if new_value >= xp_to_upgrade:
+			for i in fmod(new_value,xp_to_upgrade):
+				level_up()
+# Boost Variables
 var max_boost_fuel : float = 4
 var current_boost_fuel : float = 4:
 	set(new_value):
@@ -43,11 +51,6 @@ var current_boost_speed : float = 0
 var boost_duration : float = 4
 var is_boosting : bool = false
 #endregion
-
-var test : float = 1.0:
-	set(new_value):
-		test = new_value
-		update_shield_bar(new_value)
 
 
 func _ready() -> void:
@@ -86,16 +89,24 @@ func _on_reverse_bttn_pressed() -> void:
 #region Boosting
 func _on_boost_bttn_pressed() -> void:
 	if is_boosting:
-		is_boosting = false
+		start_boost()
 	elif current_boost_fuel > 0.3:
-		is_boosting = true
-		#boost_timer.wait_time = boost_duration
-		#boost_timer.start()
-		var tween = create_tween()
-		tween.tween_property(self,"current_boost_speed", max_boost_speed, 0.3)
+		start_boost()
 
 
 func _on_boost_fuel_drained() -> void:
+	end_boost()
+
+
+func start_boost() -> void:
+	Game.ship._on_ship_boost_start()
+	is_boosting = true
+	var tween = create_tween()
+	tween.tween_property(self,"current_boost_speed", max_boost_speed, 0.3)
+
+
+func end_boost() -> void:
+	Game.ship._on_ship_boost_end()
 	is_boosting = false
 	var tween = create_tween()
 	tween.tween_property(self,"current_boost_speed", 0, 0.3)
@@ -131,6 +142,11 @@ func set_time_label() -> void:
 	var minutes : float = Game.time_elapsed / 60.0
 	var seconds : float = fmod(Game.time_elapsed, 60.0)
 	time_label.text = "%02d:%02d" % [minutes, seconds]
+
+
+func level_up() -> void:
+	ship_level += 1
+	print("level ",ship_level)
 
 
 func _on_pause_bttn_pressed() -> void:
