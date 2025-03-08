@@ -58,17 +58,22 @@ position = Vector2(139, 358)
 [node name="PauseMenu" parent="." instance=ExtResource("5_pm1qn")]
 
 [node name="GameOverScreen" parent="." instance=ExtResource("4_x87vn")]
-visible = false
 
 [node name="LeftBoundary" type="Area2D" parent="."]
+position = Vector2(-255, 0)
 collision_layer = 0
 collision_mask = 6
 monitorable = false
 script = ExtResource("8_jgh1d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBoundary"]
-position = Vector2(-255, 0)
+position = Vector2(-76, 0)
 rotation = 1.57079
+shape = SubResource("WorldBoundaryShape2D_aahhu")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LeftBoundary"]
+position = Vector2(3326, 0)
+rotation = -1.57079
 shape = SubResource("WorldBoundaryShape2D_aahhu")
 
 [node name="Obstacle Spawner" type="Marker2D" parent="."]

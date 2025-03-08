@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://3xghy2hkitai"]
+[gd_scene load_steps=25 format=3 uid="uid://3xghy2hkitai"]
 
 [ext_resource type="Script" path="res://source/ui/control_panel.gd" id="1_nb26g"]
 [ext_resource type="Script" path="res://source/ui/sound_button.gd" id="2_tssx4"]
@@ -42,6 +42,13 @@ action = &"pause"
 [sub_resource type="Shortcut" id="Shortcut_00t2t"]
 events = [SubResource("InputEventAction_cnuba")]
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_jwffj"]
+color = Color(1, 0.624, 0.11, 0.675)
+grow_begin = -4.0
+grow_end = -4.0
+thickness = 2
+vertical = true
+
 [node name="ControlPanel" type="CanvasLayer"]
 script = ExtResource("1_nb26g")
 
@@ -74,7 +81,7 @@ offset_bottom = 996.0
 rotation = -3.14159
 max_value = 1.0
 step = 0.005
-value = 0.82
+value = 0.04
 fill_mode = 1
 nine_patch_stretch = true
 texture_under = ExtResource("3_ueq75")
@@ -243,14 +250,14 @@ flat = true
 icon_alignment = 1
 script = ExtResource("2_tssx4")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="AccelPanel" type="VBoxContainer" parent="."]
 offset_left = 62.0
 offset_top = 550.0
 offset_right = 155.0
 offset_bottom = 646.0
 alignment = 1
 
-[node name="AccelTitle" type="Label" parent="VBoxContainer"]
+[node name="AccelTitle" type="Label" parent="AccelPanel"]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.623529, 0.109804, 1)
@@ -258,7 +265,7 @@ theme_override_font_sizes/font_size = 28
 text = "Accel:"
 horizontal_alignment = 1
 
-[node name="AccelLabel" type="Label" parent="VBoxContainer"]
+[node name="AccelLabel" type="Label" parent="AccelPanel"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
@@ -269,13 +276,44 @@ text = "7m/s2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SpeedLabel" type="Label" parent="."]
+[node name="CenterPanel" type="HBoxContainer" parent="."]
+offset_left = 287.0
+offset_top = 596.0
+offset_right = 798.0
+offset_bottom = 698.0
+alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterPanel"]
+layout_mode = 2
+
+[node name="LevelLabel" type="Label" parent="CenterPanel/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 0)
-offset_left = 347.0
-offset_top = 605.0
-offset_right = 792.0
-offset_bottom = 690.0
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 0.623529, 0.109804, 1)
+theme_override_fonts/font = ExtResource("8_pqu2n")
+theme_override_font_sizes/font_size = 20
+text = "Level: 1"
+
+[node name="XPLabel" type="Label" parent="CenterPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 0.623529, 0.109804, 1)
+theme_override_fonts/font = ExtResource("8_pqu2n")
+theme_override_font_sizes/font_size = 20
+text = "XP: 0"
+
+[node name="VSeparator" type="VSeparator" parent="CenterPanel"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_constants/separation = 6
+theme_override_styles/separator = SubResource("StyleBoxLine_jwffj")
+
+[node name="SpeedLabel" type="Label" parent="CenterPanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(406.895, 0)
+layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.623529, 0.109804, 1)
 theme_override_fonts/font = ExtResource("8_pqu2n")
 theme_override_font_sizes/font_size = 70

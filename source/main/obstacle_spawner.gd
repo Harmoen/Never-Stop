@@ -22,16 +22,16 @@ func _on_game_started() -> void:
 
 
 func _on_obstacle_timer_timout() -> void:
-	if self.get_child_count() < 9:
+	if self.get_child_count() < 10:
 		spawn_obstacle()
 		obstacle_spawn_timer.wait_time = max(obstacle_spawn_timer.wait_time - 0.01, 1.25)
-	if self.get_child_count() < 4:
+	if self.get_child_count() < 5:
 		spawn_obstacle()
 
 
 
 func _on_pickup_timer_timeout() -> void:
-	if self.get_child_count() < 9:
+	if self.get_child_count() < 10:
 		spawn_pickup()
 		pickup_spawn_timer.wait_time = max(pickup_spawn_timer.wait_time - 0.01, 1.75)
 
@@ -45,7 +45,11 @@ func spawn_obstacle() -> void:
 	new_obstacle.scale.x = randf_range(0.75,1.25)
 	new_obstacle.scale.y = new_obstacle.scale.x
 	new_obstacle.speed = randf_range(50,250)
+	
 	new_obstacle.position.y = randf_range(-gizmo_extents,gizmo_extents)
+	if signf(Game.speed) < 0:
+		new_obstacle.global_position.x = Game.ship.global_position.x - 235
+		new_obstacle.speed *= -1
 
 
 func spawn_pickup() -> void:
@@ -53,3 +57,7 @@ func spawn_pickup() -> void:
 	add_child(new_pickup)
 	new_pickup.rotation = randf() * TAU
 	new_pickup.position.y = randf_range(-gizmo_extents,gizmo_extents)
+	
+	if signf(Game.speed) < 0:
+		new_pickup.global_position.x = Game.ship.global_position.x - 235
+		new_pickup.speed *= -1

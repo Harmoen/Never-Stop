@@ -18,6 +18,8 @@ enum UNITS {MILES_PER_HOUR, MILES_PER_SECOND,
 @onready var shield_circle_meter: Sprite2D = %ShieldCircleMeter
 @onready var boost_circle_meter: Sprite2D = %BoostCircleMeter
 @onready var xp_bar: TextureProgressBar = %XpBar
+@onready var level_label: Label = %LevelLabel
+@onready var xp_label: Label = %XPLabel
 @onready var time_label: Label = %TimeLabel
 @onready var speed_label: Label = %SpeedLabel
 @onready var accel_label: Label = %AccelLabel
@@ -37,11 +39,10 @@ var current_xp : float = 0:
 	set(new_value):
 		current_xp = wrap(new_value,0,xp_to_upgrade)
 		if new_value >= xp_to_upgrade:
-			for i in fmod(new_value,xp_to_upgrade):
-				update_xp_bar(1.0)
+			for i in floor(new_value/xp_to_upgrade):
 				level_up()
-				xp_bar.value = 0.0
-		update_xp_bar(current_xp / xp_to_upgrade)
+		update_xp_bar(new_value / xp_to_upgrade)
+		xp_label.text = str("XP: ",current_xp)
 # Boost Variables
 var max_boost_fuel : float = 4
 var current_boost_fuel : float = 0:
@@ -155,7 +156,15 @@ func update_shield_bar(new_value : float = 0.0) -> void:
 
 
 func update_xp_bar(new_value : float = 0) -> void: 
-	if abs(xp_bar.value - new_value) < 0.03:
+	if new_value >= 1.0:
+		for i in floor(new_value):
+			var tween = create_tween()
+			tween.tween_property(xp_bar,"value", new_value, 0.3)
+			await tween.finished
+			xp_bar.value = 0
+		new_value = fmod(new_value,1.0)
+	
+	if abs(xp_bar.value - new_value) < 0.05:
 		xp_bar.value = new_value
 	else:
 		var tween = create_tween()
@@ -172,11 +181,11 @@ func set_time_label() -> void:
 
 func level_up() -> void:
 	ship_level += 1
+	level_label.text = str("Level: ",ship_level)
 	max_acceleration *= 1.1
 	max_boost_fuel += 0.1
 	max_boost_speed *= 1.1
-	throttle.value = acceleration / max_acceleration
-	print("level ",ship_level)
+	acceleration = throttle.value *  max_acceleration
 
 
 func _on_pause_bttn_pressed() -> void:

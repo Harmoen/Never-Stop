@@ -23,3 +23,4 @@ func _process(delta: float) -> void:
 
 func _on_game_restarted() -> void:
 	time_elapsed = 0.0
+	speed = 0.0
