@@ -287,3 +287,4 @@ libraries = {
 
 [node name="BoostSFX" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamInteractive_wdsey")
+volume_db = 4.0

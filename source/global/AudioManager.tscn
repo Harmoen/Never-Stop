@@ -91,13 +91,13 @@ bus = &"Sound Effects"
 
 [node name="sfxPickup" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_puymi")
-volume_db = -6.0
+volume_db = -8.0
 max_polyphony = 3
 bus = &"Sound Effects"
 
 [node name="sfxDestruction" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_cn8vx")
-volume_db = -6.0
+volume_db = -2.0
 pitch_scale = 0.95
 max_polyphony = 3
 bus = &"Sound Effects"
