@@ -276,7 +276,23 @@ text = "7m/s2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="IntroLabel" type="Label" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(406.895, 0)
+offset_left = 295.0
+offset_top = 596.0
+offset_right = 800.0
+offset_bottom = 697.0
+theme_override_colors/font_color = Color(1, 0.623529, 0.109804, 1)
+theme_override_fonts/font = ExtResource("8_pqu2n")
+theme_override_font_sizes/font_size = 62
+text = "Adjust Thrusters to start"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="CenterPanel" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+visible = false
 offset_left = 287.0
 offset_top = 596.0
 offset_right = 798.0

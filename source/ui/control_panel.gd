@@ -73,6 +73,8 @@ func _ready() -> void:
 func _on_game_started() -> void:
 	current_boost_fuel = max_boost_fuel * 0.8
 	update_shield_bar(1.0)
+	%IntroLabel.hide()
+	%CenterPanel.show()
 
 
 func _on_game_restarted() -> void:
