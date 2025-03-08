@@ -3,6 +3,7 @@ extends Node
 @onready var game_music: AudioStreamPlayer = $GameMusic
 @onready var sfx_ui_click: AudioStreamPlayer = $sfxUIClick
 @onready var sfx_ui_hover: AudioStreamPlayer = $sfxUIHover
+@onready var sfx_pickup: AudioStreamPlayer = $sfxPickup
 
 
 func set_game_music(track_title: String = "Silence") -> void:
@@ -15,3 +16,7 @@ func play_ui_click() -> void:
 
 func play_ui_hover() -> void:
 	sfx_ui_click.play()
+
+
+func play_pickup() -> void:
+	sfx_pickup.play()

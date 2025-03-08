@@ -333,7 +333,7 @@ theme_override_font_sizes/font_size = 40
 text = "00:00"
 horizontal_alignment = 1
 
-[node name="TimeLabel2" type="Label" parent="."]
+[node name="TimeTitle" type="Label" parent="."]
 modulate = Color(0, 0, 0, 0.6)
 offset_left = 895.0
 offset_top = 544.0
@@ -341,5 +341,16 @@ offset_right = 938.0
 offset_bottom = 578.0
 theme_override_font_sizes/font_size = 28
 text = "Time"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ThrustersTitle" type="Label" parent="."]
+modulate = Color(0, 0, 0, 0.6)
+offset_left = 63.0
+offset_top = 502.0
+offset_right = 143.0
+offset_bottom = 536.0
+theme_override_font_sizes/font_size = 28
+text = "Thrusters"
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -56,8 +56,10 @@ position = Vector2(139, 358)
 [node name="ControlPanel" parent="." instance=ExtResource("5_q0jio")]
 
 [node name="PauseMenu" parent="." instance=ExtResource("5_pm1qn")]
+visible = false
 
 [node name="GameOverScreen" parent="." instance=ExtResource("4_x87vn")]
+visible = false
 
 [node name="LeftBoundary" type="Area2D" parent="."]
 position = Vector2(-255, 0)

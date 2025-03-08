@@ -6,5 +6,5 @@ extends Pickup
 
 func on_collision() -> void:
 	UI.control_panel.current_xp += xp_amount
-	
+	AudioManager.play_pickup()
 	queue_free()

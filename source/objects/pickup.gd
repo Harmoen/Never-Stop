@@ -16,4 +16,5 @@ func _process(delta: float) -> void:
 
 
 func on_collision() -> void:
+	AudioManager.play_pickup()
 	queue_free()
