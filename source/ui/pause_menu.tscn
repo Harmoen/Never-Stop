@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://c0s123eepsvc2"]
+[gd_scene load_steps=10 format=3 uid="uid://c0s123eepsvc2"]
 
 [ext_resource type="Script" path="res://source/ui/pause_menu.gd" id="1_l11hk"]
 [ext_resource type="Script" path="res://source/ui/sound_button.gd" id="2_pmjih"]
 [ext_resource type="Texture2D" uid="uid://bk0l7n784x2fw" path="res://assets/textures/extraUI/9 Patch 1 small.png" id="2_rglg5"]
-[ext_resource type="Texture2D" uid="uid://diqdvvp6c7an6" path="res://assets/textures/Thruster Slider.png" id="4_rxb4n"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x4ah1"]
 texture = ExtResource("2_rglg5")
@@ -142,10 +141,6 @@ text = "Sfx Volume"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_icons/grabber = ExtResource("4_rxb4n")
-theme_override_icons/grabber_highlight = ExtResource("4_rxb4n")
-theme_override_icons/grabber_disabled = ExtResource("4_rxb4n")
-theme_override_icons/tick = ExtResource("4_rxb4n")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_ct1ru")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_ct1ru")
 max_value = 1.0
