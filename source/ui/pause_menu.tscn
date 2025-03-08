@@ -1,10 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://c0s123eepsvc2"]
+[gd_scene load_steps=10 format=3 uid="uid://c0s123eepsvc2"]
 
 [ext_resource type="Script" path="res://source/ui/pause_menu.gd" id="1_l11hk"]
-[ext_resource type="Texture2D" uid="uid://dr6fived5dipm" path="res://assets/textures/extraUI/9 Patch 1 large.png" id="2_lmtpy"]
 [ext_resource type="Script" path="res://source/ui/sound_button.gd" id="2_pmjih"]
+[ext_resource type="Texture2D" uid="uid://bk0l7n784x2fw" path="res://assets/textures/extraUI/9 Patch 1 small.png" id="2_rglg5"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lhsy6"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x4ah1"]
+texture = ExtResource("2_rglg5")
+texture_margin_left = 55.0602
+texture_margin_top = 54.6052
+texture_margin_right = 54.1027
+texture_margin_bottom = 54.1673
+region_rect = Rect2(0, 0, 157, 157)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_05dj2"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_oh0an"]
+action = &"pause"
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_7f4k0"]
+events = [SubResource("InputEventAction_oh0an")]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_2pmb5"]
+color = Color(0.733005, 0.733005, 0.733005, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ct1ru"]
+bg_color = Color(1, 0.623529, 0.109804, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
@@ -18,6 +43,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_neighbor_bottom = NodePath("../PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MasterVolumeSlider")
 color = Color(0, 0, 0, 0.416)
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
@@ -26,29 +52,100 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -192.0
+offset_top = -116.0
+offset_right = 192.0
+offset_bottom = 116.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_lhsy6")
+theme_override_styles/panel = SubResource("StyleBoxTexture_x4ah1")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
-texture = ExtResource("2_lmtpy")
-region_rect = Rect2(0, 0, 301, 301)
-patch_margin_left = 102
-patch_margin_top = 101
-patch_margin_right = 102
-patch_margin_bottom = 101
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
 
-[node name="UnpauseBttn" type="Button" parent="PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="UnpauseBttn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-text = "unpause"
+focus_neighbor_bottom = NodePath("../HBoxContainer/MasterVolumeSlider")
+focus_next = NodePath("../HBoxContainer/MasterVolumeSlider")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxEmpty_05dj2")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_05dj2")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_05dj2")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_05dj2")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_05dj2")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_05dj2")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_05dj2")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_05dj2")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_05dj2")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_05dj2")
+shortcut = SubResource("Shortcut_7f4k0")
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "Resume"
 script = ExtResource("2_pmjih")
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxLine_2pmb5")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Master Volume"
+
+[node name="MasterVolumeSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../../UnpauseBttn")
+focus_previous = NodePath("../../UnpauseBttn")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_ct1ru")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_ct1ru")
+max_value = 1.0
+step = 0.01
+value = 0.73
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Music Volume"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_ct1ru")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_ct1ru")
+max_value = 1.0
+step = 0.01
+value = 0.15
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Sfx Volume"
+
+[node name="SfxVolumeSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_ct1ru")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_ct1ru")
+max_value = 1.0
+step = 0.01
+value = 0.53
