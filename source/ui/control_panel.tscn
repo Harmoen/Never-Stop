@@ -53,7 +53,7 @@ one_shot = true
 [node name="ShieldCircleMeter" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(51, 670)
-rotation = -0.392699
+rotation = -1.85005
 texture = ExtResource("2_pmir3")
 offset = Vector2(0, -100)
 
@@ -61,7 +61,7 @@ offset = Vector2(0, -100)
 unique_name_in_owner = true
 modulate = Color(0.96, 0.51696, 0.2784, 1)
 position = Vector2(1230, 670)
-rotation = -1.31772
+rotation = -2.84489
 texture = ExtResource("3_ueq75")
 offset = Vector2(0, -100)
 
@@ -73,7 +73,8 @@ offset_right = 1808.0
 offset_bottom = 996.0
 rotation = -3.14159
 max_value = 1.0
-step = 0.01
+step = 0.005
+value = 1.0
 fill_mode = 1
 nine_patch_stretch = true
 texture_under = ExtResource("3_ueq75")

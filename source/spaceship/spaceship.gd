@@ -12,6 +12,7 @@ const TOUCH_DEADZONE : float = 5
 @onready var boost_particles: GPUParticles2D = $GPUParticles2D
 @onready var pickup_area: Area2D = $PickupArea
 @onready var shield_component: ShieldComponent = $ShieldComponent
+@onready var animations: AnimationPlayer = $Animations
 
 
 # Strafing Variables
@@ -52,10 +53,12 @@ func _on_ship_reversed(is_reversed : bool) -> void:
 
 func _on_ship_boost_start() -> void:
 	boost_particles.show()
+	self.position.x += 5.0
 
 
 func _on_ship_boost_end() -> void:
 	boost_particles.hide()
+	self.position.x -= 5.0
 
 
 

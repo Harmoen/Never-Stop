@@ -63,7 +63,7 @@ visible = false
 
 [node name="LeftBoundary" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 6
 monitorable = false
 script = ExtResource("8_jgh1d")
 
@@ -82,5 +82,5 @@ wait_time = 2.5
 autostart = true
 
 [node name="PickupSpawnTimer" type="Timer" parent="Obstacle Spawner"]
-wait_time = 3.531
+wait_time = 3.5
 autostart = true

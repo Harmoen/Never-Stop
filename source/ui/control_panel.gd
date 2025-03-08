@@ -65,7 +65,8 @@ func _ready() -> void:
 	boost_bttn.pressed.connect(_on_boost_bttn_pressed)
 	
 	update_shield_bar(1.0)
-	update_boost_fuel_meter(1.0)
+	update_boost_fuel_meter(current_boost_fuel / max_boost_fuel)
+	update_xp_bar(current_xp / xp_to_upgrade)
 
 
 func _process(delta: float) -> void:
@@ -123,6 +124,7 @@ func update_boost_fuel_meter(new_value : float = 0.0) -> void:
 	else:
 		var tween = create_tween()
 		tween.set_ease(Tween.EASE_OUT)
+		tween.set_trans(Tween.TRANS_QUAD)
 		tween.tween_property(boost_circle_meter,"rotation", new_rotation, 0.3)
 #endregion
 
@@ -139,6 +141,7 @@ func update_shield_bar(new_value : float = 0.0) -> void:
 	else:
 		var tween = create_tween()
 		tween.set_ease(Tween.EASE_OUT)
+		tween.set_trans(Tween.TRANS_QUAD)
 		tween.tween_property(shield_circle_meter,"rotation", new_rotation, 0.4)
 
 
@@ -148,6 +151,7 @@ func update_xp_bar(new_value : float = 0) -> void:
 	else:
 		var tween = create_tween()
 		tween.set_ease(Tween.EASE_OUT)
+		tween.set_trans(Tween.TRANS_QUAD)
 		tween.tween_property(xp_bar,"value", new_value, 0.4)
 
 

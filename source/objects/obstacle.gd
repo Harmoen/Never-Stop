@@ -2,6 +2,7 @@ class_name Obstacle
 extends Area2D
 
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
+@onready var sprite_2d: AnimatedSprite2D = $Sprite2D
 
 # 5000 speed seems to be the max before it's not visible anymore
 @export var speed = 100

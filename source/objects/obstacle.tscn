@@ -1,19 +1,49 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtmaj8247j8u5"]
+[gd_scene load_steps=10 format=3 uid="uid://dtmaj8247j8u5"]
 
 [ext_resource type="Script" path="res://source/objects/obstacle.gd" id="1_ek0w7"]
 [ext_resource type="Texture2D" uid="uid://bq4671beg4nuk" path="res://assets/textures/Asteroid3.png" id="2_1xw73"]
+[ext_resource type="Texture2D" uid="uid://cyewqws6ul6oj" path="res://assets/textures/Asteroid1.png" id="2_m6s66"]
+[ext_resource type="Texture2D" uid="uid://cu1kxsjf25k6a" path="res://assets/textures/Asteroid2.png" id="3_arlfi"]
+[ext_resource type="Texture2D" uid="uid://bkf23cxnttsfc" path="res://assets/textures/Asteroid4.png" id="5_y0a1c"]
+[ext_resource type="Texture2D" uid="uid://cym5eagcv73cx" path="res://assets/textures/Asteroid 5.png" id="6_3xjxr"]
+[ext_resource type="Texture2D" uid="uid://jypyfyjxj7xq" path="res://assets/textures/Asteroid 6.png" id="7_6wlme"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7vgsi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_m6s66")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_arlfi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_1xw73")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_y0a1c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_3xjxr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_6wlme")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ngben"]
-radius = 28.0179
+radius = 50.01
 
 [node name="Obstacle" type="Area2D"]
 collision_layer = 2
 script = ExtResource("1_ek0w7")
 speed = 200
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.627907, 0.627907)
-texture = ExtResource("2_1xw73")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7vgsi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ngben")

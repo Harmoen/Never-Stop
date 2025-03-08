@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var unpause_bttn: SoundButton = $UnpauseBttn
+@onready var unpause_bttn: SoundButton = %UnpauseBttn
 
 
 func _ready() -> void:

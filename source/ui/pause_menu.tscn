@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0s123eepsvc2"]
+[gd_scene load_steps=5 format=3 uid="uid://c0s123eepsvc2"]
 
 [ext_resource type="Script" path="res://source/ui/pause_menu.gd" id="1_l11hk"]
+[ext_resource type="Texture2D" uid="uid://dr6fived5dipm" path="res://assets/textures/extraUI/9 Patch 1 large.png" id="2_lmtpy"]
 [ext_resource type="Script" path="res://source/ui/sound_button.gd" id="2_pmjih"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lhsy6"]
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
@@ -17,10 +20,35 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0, 0, 0, 0.416)
 
-[node name="UnpauseBttn" type="Button" parent="."]
-offset_left = 517.0
-offset_top = 278.0
-offset_right = 525.0
-offset_bottom = 286.0
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lhsy6")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="PanelContainer"]
+layout_mode = 2
+texture = ExtResource("2_lmtpy")
+region_rect = Rect2(0, 0, 301, 301)
+patch_margin_left = 102
+patch_margin_top = 101
+patch_margin_right = 102
+patch_margin_bottom = 101
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="UnpauseBttn" type="Button" parent="PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 text = "unpause"
 script = ExtResource("2_pmjih")
