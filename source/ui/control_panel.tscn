@@ -1,7 +1,6 @@
-[gd_scene load_steps=25 format=3 uid="uid://3xghy2hkitai"]
+[gd_scene load_steps=24 format=3 uid="uid://3xghy2hkitai"]
 
 [ext_resource type="Script" path="res://source/ui/control_panel.gd" id="1_nb26g"]
-[ext_resource type="Texture2D" uid="uid://esmi1mu1yxm6" path="res://assets/textures/Half Moon.png" id="2_pmir3"]
 [ext_resource type="Script" path="res://source/ui/sound_button.gd" id="2_tssx4"]
 [ext_resource type="Texture2D" uid="uid://cru1brghevdhw" path="res://assets/textures/Layer 2.png" id="2_wtsyc"]
 [ext_resource type="Script" path="res://source/ui/throttle.gd" id="3_0pmyw"]
@@ -52,36 +51,37 @@ one_shot = true
 
 [node name="ShieldCircleMeter" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+modulate = Color(0.362554, 0.866487, 1, 1)
 position = Vector2(51, 670)
-rotation = -1.85005
-texture = ExtResource("2_pmir3")
+rotation = -1.91812
+texture = ExtResource("3_ueq75")
 offset = Vector2(0, -100)
 
 [node name="BoostCircleMeter" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-modulate = Color(0.96, 0.51696, 0.2784, 1)
+modulate = Color(0.993013, 0.791166, 0, 1)
 position = Vector2(1230, 670)
-rotation = -2.84489
+rotation = -2.7838
 texture = ExtResource("3_ueq75")
 offset = Vector2(0, -100)
 
 [node name="XpBar" type="TextureProgressBar" parent="."]
 unique_name_in_owner = true
-offset_left = 1023.0
+offset_left = 1038.0
 offset_top = 758.0
-offset_right = 1808.0
+offset_right = 1842.0
 offset_bottom = 996.0
 rotation = -3.14159
 max_value = 1.0
 step = 0.005
-value = 1.0
+value = 0.82
 fill_mode = 1
 nine_patch_stretch = true
 texture_under = ExtResource("3_ueq75")
 texture_progress = ExtResource("3_ueq75")
 tint_under = Color(0.819608, 0.592157, 0.592157, 0)
 tint_over = Color(0.128113, 0.379727, 0.448785, 1)
-tint_progress = Color(2.11775e-06, 0.987228, 0.751067, 1)
+tint_progress = Color(0.831359, 0.445102, 1, 1)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(0, 6)
@@ -103,6 +103,7 @@ offset_top = -251.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 4
+mouse_filter = 2
 texture = ExtResource("2_wtsyc")
 metadata/_edit_lock_ = true
 
@@ -116,6 +117,7 @@ offset_top = -251.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 4
+mouse_filter = 2
 texture = ExtResource("5_dlssv")
 metadata/_edit_lock_ = true
 
@@ -130,6 +132,7 @@ offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 4
+mouse_filter = 2
 texture = ExtResource("6_xe7bs")
 metadata/_edit_lock_ = true
 
@@ -273,3 +276,13 @@ theme_override_colors/font_color = Color(1, 0.623529, 0.109804, 1)
 theme_override_font_sizes/font_size = 40
 text = "00:00"
 horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(0, 0, 0, 0.897)
+offset_left = 896.0
+offset_top = 553.0
+offset_right = 936.0
+offset_bottom = 573.0
+text = "Time"
+horizontal_alignment = 1
+vertical_alignment = 1

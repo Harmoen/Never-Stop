@@ -18,4 +18,5 @@ func _process(delta: float) -> void:
 
 
 func on_collision() -> void:
+	Game.speed -= damage
 	queue_free()

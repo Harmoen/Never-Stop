@@ -13,5 +13,13 @@ signal game_unpaused
 signal ship_reversed(reversed : bool)
 
 
+func _ready() -> void:
+	game_restarted.connect(_on_game_restarted)
+
+
 func _process(delta: float) -> void:
 	time_elapsed += delta
+
+
+func _on_game_restarted() -> void:
+	time_elapsed = 0.0

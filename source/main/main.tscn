@@ -53,10 +53,10 @@ anchor_mode = 0
 [node name="Spaceship" parent="." instance=ExtResource("2_3spb5")]
 position = Vector2(139, 358)
 
+[node name="ControlPanel" parent="." instance=ExtResource("5_q0jio")]
+
 [node name="PauseMenu" parent="." instance=ExtResource("5_pm1qn")]
 visible = false
-
-[node name="ControlPanel" parent="." instance=ExtResource("5_q0jio")]
 
 [node name="GameOverScreen" parent="." instance=ExtResource("4_x87vn")]
 visible = false
@@ -79,8 +79,6 @@ script = ExtResource("8_enudh")
 
 [node name="ObstacleSpawnTimer" type="Timer" parent="Obstacle Spawner"]
 wait_time = 2.5
-autostart = true
 
 [node name="PickupSpawnTimer" type="Timer" parent="Obstacle Spawner"]
 wait_time = 3.5
-autostart = true

@@ -44,7 +44,7 @@ var current_xp : float = 0:
 		update_xp_bar(current_xp / xp_to_upgrade)
 # Boost Variables
 var max_boost_fuel : float = 4
-var current_boost_fuel : float = 4:
+var current_boost_fuel : float = 0:
 	set(new_value):
 		current_boost_fuel = clamp(new_value,0.0,max_boost_fuel)
 		update_boost_fuel_meter(current_boost_fuel / max_boost_fuel)
@@ -63,10 +63,19 @@ func _ready() -> void:
 	reverse_bttn.pressed.connect(_on_reverse_bttn_pressed)
 	throttle.value_changed.connect(_on_throttle_value_changed)
 	boost_bttn.pressed.connect(_on_boost_bttn_pressed)
-	
-	update_shield_bar(1.0)
+	Game.game_started.connect(_on_game_started)
+	update_shield_bar(0)
 	update_boost_fuel_meter(current_boost_fuel / max_boost_fuel)
 	update_xp_bar(current_xp / xp_to_upgrade)
+
+
+func _on_game_started() -> void:
+	current_boost_fuel = max_boost_fuel * 0.8
+	update_shield_bar(1.0)
+
+
+func _on_game_restarted() -> void:
+	set_time_label()
 
 
 func _process(delta: float) -> void:

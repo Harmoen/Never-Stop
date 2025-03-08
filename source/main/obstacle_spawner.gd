@@ -13,6 +13,13 @@ const PICKUPS : Array = [BOOST_PICKUP, SHIELD_PICKUP, XP_PICKUP]
 func _ready() -> void:
 	obstacle_spawn_timer.timeout.connect(_on_obstacle_timer_timout)
 	pickup_spawn_timer.timeout.connect(_on_pickup_timer_timeout)
+	Game.game_started.connect(_on_game_started)
+
+
+func _on_game_started() -> void:
+	obstacle_spawn_timer.start()
+	pickup_spawn_timer.start()
+
 
 func _on_obstacle_timer_timout() -> void:
 	if self.get_child_count() < 9:
@@ -37,6 +44,7 @@ func spawn_obstacle() -> void:
 	new_obstacle.sprite_2d.frame = randi_range(0,5)
 	new_obstacle.scale.x = randf_range(0.75,1.25)
 	new_obstacle.scale.y = new_obstacle.scale.x
+	new_obstacle.speed = randf_range(50,250)
 	new_obstacle.position.y = randf_range(-gizmo_extents,gizmo_extents)
 
 
