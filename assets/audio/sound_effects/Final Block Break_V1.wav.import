@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://p1dom826yois"
+path="res://.godot/imported/Final Block Break_V1.wav-db4359078f88e71b28641e9940bfea7c.sample"
+
+[deps]
+
+source_file="res://assets/audio/sound_effects/Final Block Break_V1.wav"
+dest_files=["res://.godot/imported/Final Block Break_V1.wav-db4359078f88e71b28641e9940bfea7c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
