@@ -1,7 +1,7 @@
 class_name ShieldPickup
 extends Pickup
 
-@export var shield_amount : float = 2
+@export var shield_amount : float = 6
 @export var xp_amount : float = 1
 
 

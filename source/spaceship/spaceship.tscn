@@ -1,9 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://ds23o5u6thl0n"]
+[gd_scene load_steps=25 format=3 uid="uid://ds23o5u6thl0n"]
 
 [ext_resource type="Script" path="res://source/spaceship/spaceship.gd" id="1_1qns2"]
 [ext_resource type="Script" path="res://source/spaceship/shield_component.gd" id="2_vlrvn"]
 [ext_resource type="Texture2D" uid="uid://bnolcan8k7j3f" path="res://assets/textures/Central Flame.png" id="3_w6wlu"]
 [ext_resource type="Texture2D" uid="uid://c6j6a4b8m2kh1" path="res://assets/textures/Ship.png" id="4_3nyef"]
+[ext_resource type="AudioStream" uid="uid://b3g8nol6et0ig" path="res://assets/audio/sound_effects/boost_start.wav" id="5_n0i45"]
+[ext_resource type="AudioStream" uid="uid://ccy7qtvfgugvt" path="res://assets/audio/sound_effects/boost_loop.wav" id="6_cqgb6"]
+[ext_resource type="AudioStream" uid="uid://44ulwqge830x" path="res://assets/audio/sound_effects/boost_end.wav" id="7_u3fbf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_54pkg"]
 radius = 46.0
@@ -103,6 +106,135 @@ _data = {
 "boost_start": SubResource("Animation_0wfkl")
 }
 
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_bnhgf"]
+loop = false
+fade_time = 0.04
+stream_count = 1
+stream_0 = ExtResource("6_cqgb6")
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_rmwj2"]
+loop = false
+fade_time = 0.02
+stream_count = 2
+stream_0 = ExtResource("5_n0i45")
+stream_1 = SubResource("AudioStreamPlaylist_bnhgf")
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_jl0sb"]
+stream_count = 1
+stream_0 = ExtResource("6_cqgb6")
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_wdsey"]
+clip_count = 3
+clip_0/name = &"start"
+clip_0/stream = SubResource("AudioStreamPlaylist_rmwj2")
+clip_0/auto_advance = 1
+clip_0/next_clip = 1
+clip_1/name = &"loop"
+clip_1/stream = SubResource("AudioStreamPlaylist_jl0sb")
+clip_1/auto_advance = 1
+clip_1/next_clip = 1
+clip_2/name = &"end"
+clip_2/stream = ExtResource("7_u3fbf")
+clip_2/auto_advance = 0
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 1,
+"fade_mode": 1,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(-1, 0): {
+"fade_beats": 1,
+"fade_mode": 1,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(-1, 1): {
+"fade_beats": 1,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(-1, 2): {
+"fade_beats": 1,
+"fade_mode": 1,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(0, -1): {
+"fade_beats": 1,
+"fade_mode": 1,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(0, 0): {
+"fade_beats": 1,
+"fade_mode": 1,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(0, 1): {
+"fade_beats": 1,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(0, 2): {
+"fade_beats": 1,
+"fade_mode": 1,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(1, -1): {
+"fade_beats": 1,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(1, 0): {
+"fade_beats": 1,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(1, 1): {
+"fade_beats": 1,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(1, 2): {
+"fade_beats": 1,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(2, -1): {
+"fade_beats": 1,
+"fade_mode": 1,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(2, 0): {
+"fade_beats": 1,
+"fade_mode": 1,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(2, 1): {
+"fade_beats": 1,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(2, 2): {
+"fade_beats": 1,
+"fade_mode": 1,
+"from_time": 0,
+"to_time": 1
+}
+}
+
 [node name="Spaceship" type="Node2D"]
 script = ExtResource("1_1qns2")
 
@@ -152,3 +284,6 @@ grow_vertical = 2
 libraries = {
 "": SubResource("AnimationLibrary_f7lxx")
 }
+
+[node name="BoostSFX" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamInteractive_wdsey")
