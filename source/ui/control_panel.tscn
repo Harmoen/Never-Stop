@@ -1,6 +1,7 @@
-[gd_scene load_steps=25 format=3 uid="uid://3xghy2hkitai"]
+[gd_scene load_steps=26 format=3 uid="uid://3xghy2hkitai"]
 
 [ext_resource type="Script" path="res://source/ui/control_panel.gd" id="1_nb26g"]
+[ext_resource type="Texture2D" uid="uid://bglnvlset5j4i" path="res://assets/textures/vignette.png" id="2_aupo2"]
 [ext_resource type="Script" path="res://source/ui/sound_button.gd" id="2_tssx4"]
 [ext_resource type="Texture2D" uid="uid://cru1brghevdhw" path="res://assets/textures/Layer 2.png" id="2_wtsyc"]
 [ext_resource type="Script" path="res://source/ui/throttle.gd" id="3_0pmyw"]
@@ -55,6 +56,19 @@ script = ExtResource("1_nb26g")
 [node name="BoostTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 one_shot = true
+
+[node name="DangerVignette" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -280.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 4
+texture = ExtResource("2_aupo2")
 
 [node name="ShieldCircleMeter" type="Sprite2D" parent="."]
 unique_name_in_owner = true

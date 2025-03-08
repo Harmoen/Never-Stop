@@ -23,6 +23,7 @@ enum UNITS {MILES_PER_HOUR, MILES_PER_SECOND,
 @onready var time_label: Label = %TimeLabel
 @onready var speed_label: Label = %SpeedLabel
 @onready var accel_label: Label = %AccelLabel
+@onready var danger_vignette: TextureRect = %DangerVignette
 
 ## Max acceleration is equal to 1g, or 9.8 meters per second per second
 var max_acceleration : float = 9.8
@@ -65,8 +66,6 @@ func _ready() -> void:
 	throttle.value_changed.connect(_on_throttle_value_changed)
 	boost_bttn.pressed.connect(_on_boost_bttn_pressed)
 	Game.game_started.connect(_on_game_started)
-	update_shield_bar(0)
-	update_boost_fuel_meter(current_boost_fuel / max_boost_fuel)
 	update_xp_bar(current_xp / xp_to_upgrade)
 
 
@@ -155,6 +154,11 @@ func update_shield_bar(new_value : float = 0.0) -> void:
 		tween.set_ease(Tween.EASE_OUT)
 		tween.set_trans(Tween.TRANS_QUAD)
 		tween.tween_property(shield_circle_meter,"rotation", new_rotation, 0.4)
+	
+	if new_value == 0.0:
+		danger_vignette.show()
+	else:
+		danger_vignette.hide()
 
 
 func update_xp_bar(new_value : float = 0) -> void: 
