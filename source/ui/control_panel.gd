@@ -92,8 +92,8 @@ func _process(delta: float) -> void:
 		current_boost_fuel -= delta
 	
 	
-	accel_label.text = str(floorf(added_speed * 10.0)/10.0, "m/s²")
-	speed_label.text = str(floorf(Game.speed), "m/s")
+	accel_label.text = str(Text.add_comma_to_float(floorf(added_speed * 10.0)/10.0), "m/s²")
+	speed_label.text = str(Text.add_comma_to_float(floorf(Game.speed)), "m/s")
 	set_time_label()
 	
 
